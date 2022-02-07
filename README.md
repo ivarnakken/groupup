@@ -4,7 +4,7 @@ ola sæther
 
 Sandra Seville
 
-Lampe
+Kristian Lampe
 
 Sondre Stokke
 

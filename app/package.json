@@ -16,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "prettier": "prettier '**/*.{js,css,md}' --write",
+    "lint": "eslint '**/*.js'"
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +36,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-plugin-react": "^7.28.0",
+    "prettier": "^2.5.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
   }
 }

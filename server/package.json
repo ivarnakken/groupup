@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "prettier": "prettier '**/*.{js,css,md}' --write",
+    "prettier:check": "prettier '**/*.{js,css,md}' --check",
     "lint": "eslint '**/*.js'"
   },
   "keywords": [],

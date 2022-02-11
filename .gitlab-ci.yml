@@ -1,0 +1,24 @@
+
+image: node:14
+
+cache:
+  paths:
+    - node_modules/
+
+prettier:
+  script:
+    - cd app
+    - npm install
+    - npm run prettier:check
+    - cd ../server
+    - npm install
+    - npm run prettier:check
+
+eslint:
+  script:
+    - cd app
+    - npm install
+    - npm run lint
+    - cd ../server
+    - npm install
+    - npm run lint

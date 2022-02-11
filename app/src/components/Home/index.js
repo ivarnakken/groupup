@@ -1,12 +1,7 @@
-import styles from "./style.css";
+import styles from './style.css';
 
 const Home = () => {
-
-    return (
-        <div className="Home">
-        </div>
-    )
-
-}
+  return <div className={styles.Home}></div>;
+};
 
 export default Home;

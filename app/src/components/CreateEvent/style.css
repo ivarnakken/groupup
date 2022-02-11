@@ -1,0 +1,16 @@
+.CreateEvent {
+  /* display: flex; */
+  align-items: center;
+  margin-left: 200px;
+  width: fit-content;
+}
+
+.CreateEvent h2 {
+  margin: auto;
+  font-family: Quicksand;
+  color: red !important;
+}
+
+.test {
+  color: red;
+}

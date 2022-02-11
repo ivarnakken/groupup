@@ -1,0 +1,18 @@
+.Login {
+    /* display: flex; */
+    align-items: center;
+    margin: auto;
+    max-width: 800px;
+}
+
+.Login h2 {
+    margin: 20px;
+}
+
+.Login input {
+    margin: 20px;
+}
+
+.Login button {
+    border: none;
+}

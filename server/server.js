@@ -1,6 +1,5 @@
 const app = require('express')();
-
-app.listen(8000);
+const event = require("./routes/event");
 
 // To get environment variables
 require('dotenv').config();
@@ -15,3 +14,8 @@ var db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
+app.use("/event", event);
+
+app.listen(process.env.PORT || 8000);

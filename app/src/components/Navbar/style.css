@@ -1,3 +1,32 @@
-.links {
-    color: red;
+.navbar {
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    max-width: 800px;
+    align-items: center;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.navbar .links {
+    margin-left: auto;
+}
+
+.navbar a {
+    margin-left: 16px;
+    padding: 6px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #83C67B;
+}
+
+.navbar h1 {
+    color: #83C67B;
+}
+
+.navbar button {
+    border: none;
+    text-decoration: none;
+    background-color: none;
 }

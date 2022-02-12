@@ -1,16 +1,30 @@
 .CreateEvent {
   /* display: flex; */
+  margin: 0 auto;
   align-items: center;
-  margin-left: 200px;
   width: fit-content;
 }
 
-.CreateEvent h2 {
-  margin: auto;
-  font-family: Quicksand;
-  color: red !important;
+.header {
+  text-align: center;
+  margin-bottom: 1em;
 }
 
-.test {
-  color: red;
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 700px;
+  height: max-content;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+}
+
+.textarea {
+  width: 400px;
 }

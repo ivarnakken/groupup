@@ -10,11 +10,15 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  console.log(req.body);
   const event = new Event({
-    text: req.body.text,
+    title: req.body.title,
+    location: req.body.location,
+    date: req.body.date,
+    description: req.body.description,
   });
   event.save();
-  console.log(event);
+  // delete req.body._id; // for safety reasons
   res.send(event);
 });
 

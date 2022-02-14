@@ -13,13 +13,10 @@ parserOptions:
   sourceType: module
 plugins:
   - react
-rules: {
-  'react/jsx-uses-react': 'off',
-  "react/react-in-jsx-scope": "off",
-  'react-app/react/react-in-jsx-scope': 'off',
-}
-settings: {
-  react: {
-    version: 'detect',
-  },
-}
+rules:
+  {
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react-app/react/react-in-jsx-scope': 'off',
+  }
+settings: { react: { version: 'detect' } }

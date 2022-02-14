@@ -17,6 +17,9 @@ app.use(
 const event = require('./routes/event');
 app.use('/event', event);
 
+const user = require('./routes/user');
+app.use('/user', user);
+
 /* Using "dotenv" to retrieve environment variables from your .env file, and "path" is used to find this file */
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });

@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar';
+import EventList from './components/EventList';
 import { NextUIProvider } from '@nextui-org/react';
 import { Outlet } from 'react-router-dom';
 

@@ -3,10 +3,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-const event = require('./routes/event');
-app.use('/event', event);
+app.use(express.urlencoded({ extended: true }));
 
 /* CORS let's users request data from one URL to another, e.g. localhost:3000 -> localhost:8000.
 By setting origin to "*", we're allowing all origins, in other words requests from any URL  */
@@ -16,6 +13,9 @@ app.use(
     origin: '*',
   })
 );
+
+const event = require('./routes/event');
+app.use('/event', event);
 
 /* Using "dotenv" to retrieve environment variables from your .env file, and "path" is used to find this file */
 const path = require('path');
@@ -34,7 +34,7 @@ mongoose.connect(
     if (err) {
       throw err;
     }
-    console.log('Connected to db');
+    console.error('Connected to db');
   }
 );
 

@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log(req.body);
   const event = new Event({
     title: req.body.title,
     location: req.body.location,

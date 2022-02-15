@@ -3,7 +3,7 @@ import './style.css';
 import axios from 'axios';
 import { useState } from 'react';
 
-const CreateEvent = () => {
+const EventForm = () => {
   const [formValue, setFormValue] = useState({
     title: '',
     location: '',
@@ -35,7 +35,7 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="CreateEvent">
+    <div className="content">
       <Text
         h1
         size={40}
@@ -98,4 +98,4 @@ const CreateEvent = () => {
   );
 };
 
-export default CreateEvent;
+export default EventForm;

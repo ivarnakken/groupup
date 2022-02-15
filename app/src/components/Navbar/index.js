@@ -1,23 +1,38 @@
 import { useState } from 'react';
 import Login from '../Login/index';
-import CreateEvent from '../CreateEvent';
-import { Button } from '@nextui-org/react';
+import { Button, Text } from '@nextui-org/react';
 import './style.css';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [showLogin, setShowLogin] = useState(false);
-  const [showCreate, setShowCreate] = useState(false);
 
   return (
     <>
       <nav className="navbar">
-        <h1>GroupUp</h1>
+        <NavLink to="/" className="logo">
+          <Text
+            h1
+            size={40}
+            css={{
+              textGradient: '30deg, $green500 -10%, $green400 50%',
+            }}
+            weight="bold"
+          >
+            GroupUp
+          </Text>
+        </NavLink>
         <div className="links">
-          <a href="/opprett">Opprett gruppe</a>
-          <a onClick={() => setShowCreate(!showCreate)}>Opprett arrangement</a>
+          <NavLink to="/group" activeStyle={{ fontWeight: 'bold' }}>
+            Opprett gruppe
+          </NavLink>
+          <NavLink to="/event" activeStyle={{ fontWeight: 'bold' }}>
+            Opprett arrangement
+          </NavLink>
           <Button
             onClick={() => setShowLogin(!showLogin)}
             bordered
+            rounded
             color="secondary"
             auto
           >
@@ -25,8 +40,6 @@ const Navbar = () => {
           </Button>
         </div>
       </nav>
-
-      {showCreate && <CreateEvent />}
 
       {showLogin && <Login />}
     </>

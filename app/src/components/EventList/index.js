@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container } from '@nextui-org/react';
+import { Grid } from '@nextui-org/react';
 import Event from "./../Event";
 import axios from "axios";
 
@@ -19,13 +19,13 @@ const EventList = () => {
     }
   
     return (
-        <Container>
+        <Grid.Container gap={2} justify="center">
             {events.map((event) => {
                 return(
-                    <Event key={event._id} title={event.title} />
+                    <Event key={event._id} title={event.title} description={event.description} location={event.location}/>
                 )
             })} 
-        </Container>
+        </Grid.Container>
     );
   };
   

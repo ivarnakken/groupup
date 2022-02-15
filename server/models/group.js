@@ -6,4 +6,4 @@ const GroupSchema = new mongoose.Schema({
   members: { type: [String], required: true },
 });
 
-module.exports = mongoose.model('User', GroupSchema);
+module.exports = mongoose.model('Group', GroupSchema);

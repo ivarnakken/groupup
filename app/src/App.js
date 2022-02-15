@@ -1,12 +1,12 @@
 import Navbar from './components/Navbar';
 import { NextUIProvider } from '@nextui-org/react';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <NextUIProvider>
-      <div className="App">
-        <Navbar />
-      </div>
+      <Navbar />
+      <Outlet />
     </NextUIProvider>
   );
 }

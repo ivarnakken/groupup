@@ -23,12 +23,7 @@ const EventForm = () => {
     event.preventDefault(); // The default is GET, and must be prevented
     try {
       // Make axios POST request
-      await axios.post('http://localhost:8000/event/', {
-        title: formValue.title,
-        location: formValue.location,
-        date: formValue.date,
-        description: formValue.description,
-      });
+      await axios.post('http://localhost:8000/event/', formValue);
     } catch (err) {
       console.error(err);
     }

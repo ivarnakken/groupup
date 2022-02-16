@@ -23,15 +23,9 @@ const Navbar = () => {
           </Text>
         </NavLink>
         <div className="links">
-          <NavLink to="/group" activeStyle={{ fontWeight: 'bold' }}>
-            Opprett gruppe
-          </NavLink>
-          <NavLink to="/events" activeStyle={{ fontWeight: 'bold' }}>
-            Arrangementer
-          </NavLink>
-          <NavLink to="/createevent" activeStyle={{ fontWeight: 'bold' }}>
-            Opprett arrangement
-          </NavLink>
+          <NavLink to="/group">Opprett gruppe</NavLink>
+          <NavLink to="/events">Arrangementer</NavLink>
+          <NavLink to="/create-event">Opprett arrangement</NavLink>
           <Button
             onClick={() => setShowLogin(!showLogin)}
             bordered

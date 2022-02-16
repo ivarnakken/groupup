@@ -10,8 +10,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const group = new Group({
-    groupname: req.body.groupname,
-    groupleader: req.body.groupname,
+    name: req.body.name,
+    leader: req.body.leader,
     members: req.body.members,
   });
   group.save();

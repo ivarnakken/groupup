@@ -1,0 +1,20 @@
+.items {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.myprofile {
+  width: 400px;
+  text-align: center;
+}
+
+.membergroups {
+  width: 400px;
+  align-items: center;
+}
+
+.admingroups {
+  width: 400px;
+  align-items: center;
+}

@@ -9,7 +9,7 @@
     "prettier:check": "prettier '**/*.{js,css,md}' --check",
     "lint": "eslint '**/*.js'",
     "test": "jest --runInBand --detectOpenHandles",
-    "test:ci" : "jest"
+    "test:ci": "jest --ci --reporters=default --reporters=jest-junit"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "eslint": "^8.8.0",
     "jest": "^27.5.1",
+    "jest-junit": "^13.0.0",
     "prettier": "^2.5.1"
   },
   "prettier": {

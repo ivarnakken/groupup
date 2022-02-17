@@ -29,3 +29,7 @@ backend test:
     - cd server
     - npm install
     - npm run test:ci
+  artifacts:
+    reports:
+      junit:
+        - server/junit.xml

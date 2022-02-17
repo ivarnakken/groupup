@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
     location: req.body.location,
     date: req.body.date,
     description: req.body.description,
+    tags: req.body.tags,
   });
   event.save();
   // delete req.body._id; // for safety reasons

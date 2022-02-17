@@ -2,6 +2,7 @@ import { Button, Input, Text, Textarea } from '@nextui-org/react';
 import './style.css';
 import axios from 'axios';
 import { useState } from 'react';
+import Select from 'react-select'
 
 const EventForm = () => {
   const [formValue, setFormValue] = useState({
@@ -9,6 +10,7 @@ const EventForm = () => {
     location: '',
     date: new Date(),
     description: '',
+    tags: '', // TO DO: Make array or object.
   });
 
   const handleChange = (event) => {
@@ -28,6 +30,15 @@ const EventForm = () => {
       console.error(err);
     }
   };
+
+  /* TO DO: Fix!
+    Options to the tag selector.
+  */
+  const options = [
+    { value: 'vors', label: 'Vors' },
+    { value: 'bursdag', label: 'Bursdag' },
+    { value: 'kino', label: 'Kino' }
+  ]
 
   return (
     <div className="content">
@@ -72,6 +83,17 @@ const EventForm = () => {
             onChange={handleChange}
             underlined
             required
+          />
+          <Select
+            placeholder="tags"
+            options={options}
+            // isMulti
+            onChange={(event)=>{
+              setFormValue({
+                ...formValue,
+                tags: event.value,
+              });
+            }}
           />
           <Button type="submit" shadow color="gradient">
             Opprett

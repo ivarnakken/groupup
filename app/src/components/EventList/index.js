@@ -4,7 +4,7 @@ import Event from './../Event';
 import axios from 'axios';
 
 const EventList = () => {
-  const [events, getEvents] = useState([]);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     getAllEvents();
@@ -13,7 +13,7 @@ const EventList = () => {
   const getAllEvents = () => {
     axios.get('http://localhost:8000/event').then((response) => {
       console.log(response);
-      getEvents(response.data);
+      setEvents(response.data);
       console.log(events);
     });
   };
@@ -27,6 +27,7 @@ const EventList = () => {
             title={event.title}
             description={event.description}
             location={event.location}
+            date={event.date}
           />
         );
       })}

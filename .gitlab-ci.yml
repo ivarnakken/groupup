@@ -22,3 +22,10 @@ eslint:
     - cd ../server
     - npm install
     - npm run lint
+
+backend test:
+  stage: test
+  script:
+    - cd server
+    - npm install
+    - npm run test:ci

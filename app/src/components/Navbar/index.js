@@ -26,7 +26,10 @@ const Navbar = () => {
           <NavLink to="/group" activeStyle={{ fontWeight: 'bold' }}>
             Opprett gruppe
           </NavLink>
-          <NavLink to="/event" activeStyle={{ fontWeight: 'bold' }}>
+          <NavLink to="/events" activeStyle={{ fontWeight: 'bold' }}>
+            Arrangementer
+          </NavLink>
+          <NavLink to="/createevent" activeStyle={{ fontWeight: 'bold' }}>
             Opprett arrangement
           </NavLink>
           <Button

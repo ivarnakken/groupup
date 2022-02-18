@@ -40,7 +40,7 @@ mongoose.connect(
     if (err) {
       throw err;
     }
-    console.error('Connected to db');
+    console.log('Connected to db');
   }
 );
 

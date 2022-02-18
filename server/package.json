@@ -8,7 +8,8 @@
     "prettier": "prettier '**/*.{js,css,md}' --write",
     "prettier:check": "prettier '**/*.{js,css,md}' --check",
     "lint": "eslint '**/*.js'",
-    "test": "jest --runInBand --detectOpenHandles",
+    "test": "jest --runInBand --detectOpenHandles --reporters=default",
+    "test:watch": "jest --runInBand --detectOpenHandles --reporters=default --collectCoverage=false --watchAll",
     "test:ci": "jest --ci --reporters=default --reporters=jest-junit"
   },
   "keywords": [],

@@ -20,9 +20,12 @@ const getTime = (dateString) => {
 const Event = (props) => {
   return (
     <Grid xs={12} sm={4}>
-      <Card>
+      <Card cover>
         <Text h4>{props.title}</Text>
         <Text>{props.description}</Text>
+        <Card.Body>
+          <Card.Image src={props.image} width="100%" height={340} />
+        </Card.Body>
         <Card.Footer>
           <Col>
             <Text>{props.location}</Text>
@@ -46,6 +49,7 @@ Event.propTypes = {
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };
 
 export default Event;

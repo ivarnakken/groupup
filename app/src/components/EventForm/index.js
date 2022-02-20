@@ -9,6 +9,7 @@ const EventForm = () => {
     location: '',
     date: new Date(),
     description: '',
+    image: '',
   });
 
   const handleChange = (event) => {
@@ -18,12 +19,26 @@ const EventForm = () => {
     });
   };
 
+  const handleImage = (event) => {
+    setFormValue({
+      ...formValue,
+      image: event.target.files[0],
+    });
+  };
+
   /* We handle the submit with Axios, instead of an action on the form itself because we don't want to be redirected to the post url (https://localhost:8000/event/) */
   const handleSubmit = async (event) => {
     event.preventDefault(); // The default is GET, and must be prevented
     try {
+      // Images can't be sent via JSON (not without encoding), but they can be sent as form data
+      const formData = new FormData();
+      formData.append('title', formValue.title);
+      formData.append('location', formValue.location);
+      formData.append('date', formValue.date);
+      formData.append('description', formValue.description);
+      formData.append('image', formValue.image);
       // Make axios POST request
-      await axios.post('http://localhost:8000/event/', formValue);
+      await axios.post('http://localhost:8000/event/', formData);
     } catch (err) {
       console.error(err);
     }
@@ -67,6 +82,13 @@ const EventForm = () => {
             underlined
             required
           />
+          <input
+            type="file"
+            onChange={handleImage}
+            accept="image/*"
+            name="image"
+          />
+
           <Button type="submit" shadow color="primary">
             Opprett
           </Button>

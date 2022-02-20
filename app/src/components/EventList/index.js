@@ -28,6 +28,7 @@ const EventList = () => {
             description={event.description}
             location={event.location}
             date={event.date}
+            image={event.image}
           />
         );
       })}

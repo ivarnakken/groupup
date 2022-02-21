@@ -20,7 +20,7 @@ const EventList = () => {
   };
 
   return (
-    <div className='events'>
+    <div className="events">
       <EventFilter />
       <Grid.Container gap={2} justify="center">
         {events.map((event) => {

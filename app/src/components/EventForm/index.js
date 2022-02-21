@@ -1,8 +1,8 @@
 import { Button, Input, Text, Textarea } from '@nextui-org/react';
 import './style.css';
 import axios from 'axios';
-import { useState } from 'react';
-import Select from 'react-select'
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
 
 const EventForm = () => {
   const [formValue, setFormValue] = useState({
@@ -12,6 +12,18 @@ const EventForm = () => {
     description: '',
     tags: [],
   });
+
+  const [tagOptions, setTagOptions] = useState([]);
+
+  useEffect(() => {
+    getTags();
+  }, []);
+
+  const getTags = () => {
+    axios.get('http://localhost:8000/tag').then((response) => {
+      setTagOptions(response.data);
+    });
+  };
 
   const handleChange = (event) => {
     setFormValue({
@@ -23,7 +35,7 @@ const EventForm = () => {
   const handleSelectChange = (selectedOptions) => {
     setFormValue({
       ...formValue,
-      tags: selectedOptions.map(option => option.value),
+      tags: selectedOptions.map((option) => option.value),
     });
   };
 
@@ -37,15 +49,6 @@ const EventForm = () => {
       console.error(err);
     }
   };
-
-  /* TO DO: Fix!
-    Options to the tag selector.
-  */
-  const options = [
-    { value: 'vors', label: 'Vors' },
-    { value: 'bursdag', label: 'Bursdag' },
-    { value: 'kino', label: 'Kino' }
-  ]
 
   return (
     <div className="content">
@@ -92,8 +95,8 @@ const EventForm = () => {
             required
           />
           <Select
-            placeholder="tags"
-            options={options}
+            placeholder="Emneknagger"
+            options={tagOptions}
             isMulti
             onChange={handleSelectChange}
           />

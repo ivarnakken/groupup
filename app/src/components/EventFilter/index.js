@@ -1,14 +1,21 @@
-import Select from 'react-select'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
 
-const options = [
-  { value: 'vors', label: 'Vors' },
-  { value: 'bursdag', label: 'Bursdag' },
-  { value: 'kino', label: 'Kino' }
-]
+const EventFilter = () => {
+  const [tagOptions, setTagOptions] = useState([]);
 
-const EventFilter = () => (
-  /* Protype */
-  <Select options={options} />
-)
+  useEffect(() => {
+    getTags();
+  }, []);
+
+  const getTags = () => {
+    axios.get('http://localhost:8000/tag').then((response) => {
+      setTagOptions(response.data);
+    });
+  };
+
+  return <Select placeholder="Emneknagger" isMulti options={tagOptions} />;
+};
 
 export default EventFilter;

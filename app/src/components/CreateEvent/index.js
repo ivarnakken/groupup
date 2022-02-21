@@ -1,19 +1,15 @@
 import { Button, Input, Text, Textarea } from '@nextui-org/react';
+
 import './style.css';
 
 const CreateEvent = () => {
   return (
     <div className="CreateEvent">
-      <Text
-        h1
-        size={40}
-        color="primary"
-        weight="bold"
-        fonts="overskrift"
-        className="header"
-      >
-        Opprett arrangement
-      </Text>
+      <div className="overskrift">
+        <Text h1 size={40} color="primary" weight="light" className="header">
+          Opprett arrangement
+        </Text>
+      </div>
 
       <form method="POST" action="http://localhost:8000/event">
         <div className="inputs">

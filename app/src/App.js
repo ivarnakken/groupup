@@ -3,7 +3,6 @@ import { NextUIProvider } from '@nextui-org/react';
 import { Outlet } from 'react-router-dom';
 import { createTheme, NextUIProvider } from '@nextui-org/react';
 
-
 const theme = createTheme({
   type: 'light',
   theme: {
@@ -18,12 +17,13 @@ const theme = createTheme({
       nicewhite: '#F4F4F4', // background and text
       white: '#ffffff',
       black: '#000000',
+      logofarge: '#F5A623',
 
       // ...  more colors
     },
     space: {},
     fonts: {
-      overskrift: 'DM Serif Display',
+      sans: 'Helvetica Neue',
     },
   },
 });

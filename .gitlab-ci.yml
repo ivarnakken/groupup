@@ -1,10 +1,6 @@
 
 image: node:14
 
-cache:
-  paths:
-    - node_modules/
-
 prettier:
   script:
     - cd app
@@ -22,3 +18,16 @@ eslint:
     - cd ../server
     - npm install
     - npm run lint
+
+backend test:
+  stage: test
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  script:
+    - cd server
+    - npm install
+    - npm run test:ci
+  artifacts:
+    reports:
+      junit:
+        - server/junit.xml
+      cobertura: server/coverage/cobertura-coverage.xml

@@ -22,7 +22,7 @@ const Event = (props) => {
     <Grid xs={12} sm={4}>
       <Card>
         <Text h4>{props.title}</Text>
-        <Text>Tags: {props.tags}</Text>
+        <Text>{props.tags.length ? '#' + props.tags.join(' #') : ''}</Text>
         <Text>{props.description}</Text>
         <Card.Footer>
           <Col>
@@ -47,7 +47,7 @@ Event.propTypes = {
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired, // ?
+  tags: PropTypes.array.isRequired, // ?
 };
 
 export default Event;

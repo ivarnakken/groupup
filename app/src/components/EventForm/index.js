@@ -10,13 +10,20 @@ const EventForm = () => {
     location: '',
     date: new Date(),
     description: '',
-    tags: '', // TO DO: Make array or object.
+    tags: [],
   });
 
   const handleChange = (event) => {
     setFormValue({
       ...formValue,
       [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSelectChange = (selectedOptions) => {
+    setFormValue({
+      ...formValue,
+      tags: selectedOptions.map(option => option.value),
     });
   };
 
@@ -87,13 +94,8 @@ const EventForm = () => {
           <Select
             placeholder="tags"
             options={options}
-            // isMulti
-            onChange={(event)=>{
-              setFormValue({
-                ...formValue,
-                tags: event.value,
-              });
-            }}
+            isMulti
+            onChange={handleSelectChange}
           />
           <Button type="submit" shadow color="gradient">
             Opprett

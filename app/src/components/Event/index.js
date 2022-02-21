@@ -1,3 +1,4 @@
+import './style.css';
 import { Card, Text, Grid, Col, Row } from '@nextui-org/react';
 import PropTypes from 'prop-types';
 
@@ -19,23 +20,44 @@ const getTime = (dateString) => {
 
 const Event = (props) => {
   return (
-    <Grid xs={12} sm={4}>
+    <Grid xs={12} sm={3}>
       <Card cover>
-        <Text h4>{props.title}</Text>
-        <Text>{props.description}</Text>
         <Card.Body>
-          <Card.Image src={props.image} width="100%" height={340} />
+          <Card.Image src={props.image} width="100%" height={500} />
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer
+          css={{
+            position: 'absolute',
+            bgBlur: '#0f1114',
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            bottom: 0,
+            zIndex: 1,
+            opacity: 1,
+          }}
+        >
           <Col>
-            <Text>{props.location}</Text>
-          </Col>
-          <Col>
-            <Row justify="flex-end">
-              <Text justify="right">{getDate(props.date)}</Text>
-            </Row>
-            <Row justify="flex-end">
-              <Text justify="right">{getTime(props.date)}</Text>
+            <Text h4 color="#FFFFFF">
+              {props.title}
+            </Text>
+            <Text color="#FFFFFF">{props.description}</Text>
+            <Row>
+              <Col>
+                <Text color="#AAAAFF" b>
+                  {props.location}
+                </Text>
+              </Col>
+              <Col>
+                <Row justify="flex-end">
+                  <Text justify="right" color="#FFFFFF">
+                    {getDate(props.date)}
+                  </Text>
+                </Row>
+                <Row justify="flex-end">
+                  <Text justify="right" color="#FFFFFF">
+                    {getTime(props.date)}
+                  </Text>
+                </Row>
+              </Col>
             </Row>
           </Col>
         </Card.Footer>

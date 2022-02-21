@@ -1,9 +1,8 @@
-import { Text, Card, Row, Col, Grid, Button } from '@nextui-org/react';
-import './style.css';
+import { Text, Card, Row, Col, Grid, Button, Spacer } from '@nextui-org/react';
 
 const Profile = () => {
   return (
-    <div className="content">
+    <div>
       <Text
         h1
         size={40}
@@ -15,69 +14,209 @@ const Profile = () => {
       >
         Min side
       </Text>
+      <div>
+        <Text size={15} className="header">
+          Her kan du administere profilen din og få oversikt over dine grupper
+        </Text>
+      </div>
 
-      <Grid xs={12} sm={5}>
-        <Card cover css={{ w: '100%' }}>
-          <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-            <Col>
-              <Text
-                size={12}
-                weight="bold"
-                transform="uppercase"
-                color="#ffffffAA"
+      <div>
+        <Row>
+          <Spacer x={1} />
+          <Grid xs={12} sm={5}>
+            <Card cover css={{ w: '100%' }}>
+              <Card.Header
+                blur
+                css={{
+                  position: 'absolute',
+                  bgBlur: '#FFFFFF',
+                  borderTop:
+                    '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+                  zIndex: 1,
+                  top: 0,
+                }}
               >
-                New
-              </Text>
-              <Text h3 color="black">
-                Sandra Seville
-              </Text>
-            </Col>
-          </Card.Header>
-          <Card.Body>
-            <Card.Image
-              src="/images/card-example-6.jpeg"
-              height={400}
-              width="100%"
-              alt="Card example background"
-            />
-          </Card.Body>
-          <Card.Footer
-            blur
-            css={{
-              position: 'absolute',
-              bgBlur: '#FFFFFF',
-              borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-              bottom: 0,
-              zIndex: 1,
-            }}
-          >
-            <Row>
-              <Col>
-                <Text color="#000" size={12}>
-                  23 år
-                </Text>
-                <Text color="#000" size={12}>
-                  Trondheim
-                </Text>
-              </Col>
-              <Col>
-                <Row justify="flex-end">
-                  <Button flat auto rounded color="secondary">
-                    <Text
-                      css={{ color: 'inherit' }}
-                      size={12}
-                      weight="bold"
-                      transform="uppercase"
-                    >
-                      Rediger profil
+                <Col>
+                  <Text h3 color="black" css={{ textAlign: 'center' }}>
+                    Navn på innlogget bruker
+                  </Text>
+                </Col>
+              </Card.Header>
+              <Card.Body>
+                <Card.Image
+                  //database bilde, kan ikke ligge i public
+                  src="./meg.jpg"
+                  height={400}
+                  width="100%"
+                  alt="Card example background"
+                />
+              </Card.Body>
+              <Card.Footer
+                blur
+                css={{
+                  position: 'absolute',
+                  bgBlur: '#FFFFFF',
+                  borderTop:
+                    '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+                  bottom: 0,
+                  zIndex: 1,
+                }}
+              >
+                <Row>
+                  <Col>
+                    <Text color="#000" size={12}>
+                      alder
                     </Text>
-                  </Button>
+                    <Text color="#000" size={12}>
+                      lokasjon
+                    </Text>
+                  </Col>
+                  <Col>
+                    <Row justify="flex-end">
+                      <Button flat auto rounded color="secondary">
+                        <Text
+                          css={{ color: 'inherit' }}
+                          size={12}
+                          weight="bold"
+                          transform="uppercase"
+                        >
+                          Rediger profil
+                        </Text>
+                      </Button>
+                    </Row>
+                  </Col>
                 </Row>
-              </Col>
-            </Row>
-          </Card.Footer>
-        </Card>
-      </Grid>
+              </Card.Footer>
+            </Card>
+          </Grid>
+          <Spacer x={1} />
+          <Grid xs={12} sm={5}>
+            <Card cover css={{ w: '100%' }}>
+              <Card.Header
+                blur
+                css={{
+                  position: 'absolute',
+                  bgBlur: '#FFFFFF',
+                  borderTop:
+                    '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+                  zIndex: 1,
+                  top: 0,
+                }}
+              >
+                <Col>
+                  <Text h3 color="black" css={{ textAlign: 'center' }}>
+                    Grupper jeg er medlem av
+                  </Text>
+                </Col>
+              </Card.Header>
+              <Card.Body>
+                <Card.Image
+                  src="./kajakk.jpg"
+                  height={400}
+                  width="100%"
+                  alt="Card example background"
+                />
+              </Card.Body>
+              <Card.Footer
+                blur
+                css={{
+                  position: 'absolute',
+                  bgBlur: '#FFFFFF',
+                  borderTop:
+                    '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+                  bottom: 0,
+                  zIndex: 1,
+                }}
+              >
+                <Row>
+                  <Col>
+                    <Text color="#000" size={12}>
+                      Her finner du oversikt over gruppene du er med i
+                    </Text>
+                  </Col>
+                  <Col>
+                    <Row justify="flex-end">
+                      <Button flat auto rounded color="secondary">
+                        <Text
+                          css={{ color: 'inherit' }}
+                          size={12}
+                          weight="bold"
+                          transform="uppercase"
+                        >
+                          Vis grupper
+                        </Text>
+                      </Button>
+                    </Row>
+                  </Col>
+                </Row>
+              </Card.Footer>
+            </Card>
+          </Grid>
+          <Spacer x={1} />
+          <Grid xs={12} sm={5}>
+            <Card cover css={{ w: '100%' }}>
+              <Card.Header
+                blur
+                css={{
+                  position: 'absolute',
+                  bgBlur: '#FFFFFF',
+                  borderTop:
+                    '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+                  zIndex: 1,
+                  top: 0,
+                }}
+              >
+                <Col>
+                  <Text h3 color="black" css={{ textAlign: 'center' }}>
+                    Grupper jeg administrerer
+                  </Text>
+                </Col>
+              </Card.Header>
+              <Card.Body>
+                <Card.Image
+                  src="./tur.jpg"
+                  height={400}
+                  width="100%"
+                  alt="Card example background"
+                />
+              </Card.Body>
+              <Card.Footer
+                blur
+                css={{
+                  position: 'absolute',
+                  bgBlur: '#FFFFFF',
+                  borderTop:
+                    '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+                  bottom: 0,
+                  zIndex: 1,
+                }}
+              >
+                <Row>
+                  <Col>
+                    <Text color="#000" size={12}>
+                      Her finner du oversikt over gruppene du administrerer
+                    </Text>
+                  </Col>
+                  <Col>
+                    <Row justify="flex-end">
+                      <Button flat auto rounded color="secondary">
+                        <Text
+                          css={{ color: 'inherit' }}
+                          size={12}
+                          weight="bold"
+                          transform="uppercase"
+                        >
+                          Vis grupper
+                        </Text>
+                      </Button>
+                    </Row>
+                  </Col>
+                </Row>
+              </Card.Footer>
+            </Card>
+          </Grid>
+        </Row>
+      </div>
     </div>
   );
 };

@@ -2,3 +2,7 @@
   margin-left: 6px;
   font-weight: bold;
 }
+
+.buttons {
+  gap: 1em;
+}

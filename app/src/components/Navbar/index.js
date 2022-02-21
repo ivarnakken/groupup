@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import Login from '../Login/index';
+import LoginForm from '../LoginForm';
 import { Button } from '@nextui-org/react';
 import './style.css';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
 
   return (
     <>
@@ -19,7 +19,8 @@ const Navbar = () => {
           <NavLink to="/create-event">Opprett arrangement</NavLink>
           <NavLink to="/profile">Min side</NavLink>
           <Button
-            onClick={() => setShowLogin(!showLogin)}
+            onClick={() => setShowLoginForm(!showLoginForm)}
+            bordered
             rounded
             color="primary"
             auto
@@ -29,7 +30,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {showLogin && <Login />}
+      {showLoginForm && <LoginForm />}
     </>
   );
 };

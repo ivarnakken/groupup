@@ -1,14 +1,10 @@
-import { Modal } from '@nextui-org/react';
-import { Input } from '@nextui-org/react';
-import { Button } from '@nextui-org/react';
-import { Text } from '@nextui-org/react';
-import { Row } from '@nextui-org/react';
-import { Checkbox } from '@nextui-org/react';
+import { Modal, Input, Button, Text, Row } from '@nextui-org/react';
 import { useState } from 'react';
 import axios from 'axios';
 import './style.css';
 
-const Login = () => {
+const LoginForm = () => {
+  const [isSignup, setIsSignup] = useState(true);
   const [visible, setVisible] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,22 +13,26 @@ const Login = () => {
     setVisible(false);
   };
 
-  const handleUserChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePassChange = (event) => {
-    setPassword(event.target.value);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:8000/user/', { username });
+      await axios.post(
+        `http://localhost:8000/auth/${isSignup ? 'signup' : 'signin'}/`,
+        {
+          username,
+          password,
+        }
+      ).then((response) => {
+        if (response.data.accessToken) {
+          localStorage.setItem("user", JSON.stringify(response.data))
+        }
+        return response.data
+      })
     } catch (err) {
       console.error(err);
     }
   };
+
   return (
     <form id="login" onSubmit={handleSubmit}>
       <Modal
@@ -58,51 +58,50 @@ const Login = () => {
         </Modal.Header>
         <Modal.Body>
           <Input
-            auto
             form="login"
             type="text"
             name="username"
             value={username}
-            onChange={handleUserChange}
+            onChange={(e) => setUsername(e.target.value)}
             clearable
             bordered
-            fullWidth
             color="primary"
-            size="lg"
             placeholder="Brukernavn"
           />
           <Input
-            auto
             form="login"
             type="text"
             name="password"
             value={password}
-            onChange={handlePassChange}
+            onChange={(e) => setPassword(e.target.value)}
             clearable
             bordered
-            fullWidth
             color="primary"
-            size="lg"
             placeholder="Passord"
           />
-          <Button form="login" type="submit" auto onClick={closeHandler}>
-            Logg inn
-          </Button>
-          <Row justify="space-between">
-            <Checkbox color="primary" checked={false}>
-              <Text size={14}>Husk meg</Text>
-            </Checkbox>
-            <Text size={14}>Glemt passord?</Text>
+          <Row className="buttons">
+            <Button
+              auto
+              color="primary"
+              form="login"
+              type="submit"
+              onClick={closeHandler}
+            >
+              {isSignup ? 'Logg inn' : 'Registrer deg'}
+            </Button>
+            <Button
+              auto
+              ghost
+              color="primary"
+              onClick={() => setIsSignup(!isSignup)}
+            >
+              {isSignup ? 'Registrer deg' : 'Logg inn'}
+            </Button>
           </Row>
         </Modal.Body>
-        <Modal.Footer>
-          <Button auto flat color="error" onClick={closeHandler}>
-            Lukk
-          </Button>
-        </Modal.Footer>
       </Modal>
     </form>
   );
 };
 
-export default Login;
+export default LoginForm;

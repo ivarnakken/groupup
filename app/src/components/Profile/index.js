@@ -1,4 +1,4 @@
-import { Text, Container, Card, Row, Col, Spacer } from '@nextui-org/react';
+import { Text, Card, Row, Col, Grid, Button } from '@nextui-org/react';
 import './style.css';
 
 const Profile = () => {
@@ -16,38 +16,68 @@ const Profile = () => {
         Min side
       </Text>
 
-      <div className="items">
-        <Container>
-          <Row>
+      <Grid xs={12} sm={5}>
+        <Card cover css={{ w: '100%' }}>
+          <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
             <Col>
-              <div className="myprofile">
-                <Card color="primary">
-                  <Text size={30}>Min profil</Text>
-                  <Text size={20}>Navn</Text>
-                  <Text size={20}>Alder</Text>
-                  <Text size={20}>Sted</Text>
-                </Card>
-              </div>
+              <Text
+                size={12}
+                weight="bold"
+                transform="uppercase"
+                color="#ffffffAA"
+              >
+                New
+              </Text>
+              <Text h3 color="black">
+                Sandra Seville
+              </Text>
             </Col>
-            <Spacer x={2} />
-            <Col>
-              <div className="membergroups">
-                <Card color="primary">
-                  <Text size={30}>Grupper jeg er medlem av</Text>
-                </Card>
-              </div>
-            </Col>
-            <Spacer x={2} />
-            <Col>
-              <div className="admingroups">
-                <Card color="primary">
-                  <Text size={30}>Mine opprettede grupper</Text>
-                </Card>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+          </Card.Header>
+          <Card.Body>
+            <Card.Image
+              src="/images/card-example-6.jpeg"
+              height={400}
+              width="100%"
+              alt="Card example background"
+            />
+          </Card.Body>
+          <Card.Footer
+            blur
+            css={{
+              position: 'absolute',
+              bgBlur: '#FFFFFF',
+              borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+              bottom: 0,
+              zIndex: 1,
+            }}
+          >
+            <Row>
+              <Col>
+                <Text color="#000" size={12}>
+                  23 år
+                </Text>
+                <Text color="#000" size={12}>
+                  Trondheim
+                </Text>
+              </Col>
+              <Col>
+                <Row justify="flex-end">
+                  <Button flat auto rounded color="secondary">
+                    <Text
+                      css={{ color: 'inherit' }}
+                      size={12}
+                      weight="bold"
+                      transform="uppercase"
+                    >
+                      Rediger profil
+                    </Text>
+                  </Button>
+                </Row>
+              </Col>
+            </Row>
+          </Card.Footer>
+        </Card>
+      </Grid>
     </div>
   );
 };

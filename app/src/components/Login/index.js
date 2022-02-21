@@ -11,13 +11,18 @@ import './style.css';
 const Login = () => {
   const [visible, setVisible] = useState(true);
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const closeHandler = () => {
     setVisible(false);
   };
 
-  const handleChange = (event) => {
+  const handleUserChange = (event) => {
     setUsername(event.target.value);
+  };
+
+  const handlePassChange = (event) => {
+    setPassword(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -58,13 +63,27 @@ const Login = () => {
             type="text"
             name="username"
             value={username}
-            onChange={handleChange}
+            onChange={handleUserChange}
             clearable
             bordered
             fullWidth
             color="primary"
             size="lg"
             placeholder="Brukernavn"
+          />
+          <Input
+            auto
+            form="login"
+            type="text"
+            name="password"
+            value={password}
+            onChange={handlePassChange}
+            clearable
+            bordered
+            fullWidth
+            color="primary"
+            size="lg"
+            placeholder="Passord"
           />
           <Button form="login" type="submit" auto onClick={closeHandler}>
             Logg inn

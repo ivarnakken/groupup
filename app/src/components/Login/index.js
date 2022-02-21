@@ -29,7 +29,7 @@ const Login = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="login" onSubmit={handleSubmit}>
       <Modal
         closeButton
         aria-labelledby="modal-title"
@@ -54,6 +54,7 @@ const Login = () => {
         <Modal.Body>
           <Input
             auto
+            form="login"
             type="text"
             name="username"
             value={username}
@@ -65,7 +66,7 @@ const Login = () => {
             size="lg"
             placeholder="Brukernavn"
           />
-          <Button type="submit" auto onClick={closeHandler}>
+          <Button form="login" type="submit" auto onClick={closeHandler}>
             Logg inn
           </Button>
           <Row justify="space-between">

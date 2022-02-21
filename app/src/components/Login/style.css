@@ -1,18 +1,4 @@
-.login {
-  /* display: flex; */
-  align-items: center;
-  margin: auto;
-  max-width: 800px;
-}
-
-.login h2 {
-  margin: 20px;
-}
-
-.login input {
-  margin: 20px;
-}
-
-.login button {
-  border: none;
+.logotekst {
+  margin-left: 6px;
+  font-weight: bold;
 }

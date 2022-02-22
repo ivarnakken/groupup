@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar';
-import { NextUIProvider } from '@nextui-org/react';
 import { Outlet } from 'react-router-dom';
+
 import { createTheme, NextUIProvider } from '@nextui-org/react';
 
 const theme = createTheme({
@@ -33,6 +33,7 @@ function App() {
     <NextUIProvider theme={theme}>
       <div className="App">
         <Navbar />
+        <Outlet />
       </div>
     </NextUIProvider>
   );

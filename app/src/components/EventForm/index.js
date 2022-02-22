@@ -31,17 +31,11 @@ const EventForm = () => {
 
   return (
     <div className="content">
-      <Text
-        h1
-        size={40}
-        css={{
-          textGradient: '45deg, $blue500 -20%, $pink500 50%',
-        }}
-        weight="bold"
-        className="header"
-      >
-        Opprett arrangement
-      </Text>
+      <div className="header">
+        <Text h1 size={40} color="primary" weight="medium" className="header">
+          Opprett arrangement
+        </Text>
+      </div>
 
       <form onSubmit={handleSubmit}>
         <div className="inputs">
@@ -73,7 +67,7 @@ const EventForm = () => {
             underlined
             required
           />
-          <Button type="submit" shadow color="gradient">
+          <Button type="submit" shadow color="primary">
             Opprett
           </Button>
         </div>

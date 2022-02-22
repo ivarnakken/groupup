@@ -19,4 +19,13 @@
   margin-left: 16px;
   padding: 6px;
   text-decoration: none;
+  color: black;
+}
+
+.navbar a:hover {
+  color: #f5a623;
+}
+
+.navbar h1 {
+  color: #f5a623;
 }

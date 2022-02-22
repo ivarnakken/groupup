@@ -53,7 +53,7 @@ const Login = () => {
             }}
             className="logotekst"
           >
-            GroupUp
+            <img src="/logo.png" height={25} width={150} />
           </Text>
         </Modal.Header>
         <Modal.Body>
@@ -89,7 +89,7 @@ const Login = () => {
             Logg inn
           </Button>
           <Row justify="space-between">
-            <Checkbox>
+            <Checkbox color="primary" checked={false}>
               <Text size={14}>Husk meg</Text>
             </Checkbox>
             <Text size={14}>Glemt passord?</Text>

@@ -215,6 +215,7 @@ const Profile = () => {
               </Card.Footer>
             </Card>
           </Grid>
+          <Spacer x={1} />
         </Row>
       </div>
     </div>

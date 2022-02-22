@@ -1,7 +1,8 @@
 import { Button, Input, Text, Textarea } from '@nextui-org/react';
 import './style.css';
 import axios from 'axios';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import ImageUploadButton from '../ImageUploadButton';
 
 const EventForm = () => {
   const [formValue, setFormValue] = useState({
@@ -11,13 +12,6 @@ const EventForm = () => {
     description: '',
     image: '',
   });
-
-  const hiddenFileInput = useRef(null);
-
-  const uploadImage = (event) => {
-    event.preventDefault();
-    hiddenFileInput.current.click();
-  };
 
   const handleChange = (event) => {
     setFormValue({
@@ -89,19 +83,8 @@ const EventForm = () => {
             underlined
             required
           />
+          <ImageUploadButton name="image" onChange={handleImage} />
 
-          <input
-            type="file"
-            onChange={handleImage}
-            accept="image/*"
-            name="image"
-            ref={hiddenFileInput}
-            hidden
-          />
-
-          <Button shadow color="gradient" onClick={uploadImage}>
-            Last opp bilde
-          </Button>
           <Button type="submit" shadow color="primary">
             Opprett
           </Button>

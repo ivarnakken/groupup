@@ -26,7 +26,6 @@ const Event = (props) => {
         <Card.Body
           css={{
             position: 'absolute',
-            bgBlur: '#0f1114',
             backgroundColor: 'rgba(0,0,0,0.7)',
             bottom: 100,
             zIndex: 1,
@@ -45,7 +44,6 @@ const Event = (props) => {
         <Card.Footer
           css={{
             position: 'absolute',
-            bgBlur: '#0f1114',
             backgroundColor: 'rgba(0,0,0,0.7)',
             bottom: 0,
             zIndex: 1,

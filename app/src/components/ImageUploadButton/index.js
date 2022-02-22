@@ -20,7 +20,7 @@ const ImageUploadButton = (props) => {
         ref={hiddenFileInput}
         hidden
       />
-      <Button shadow color="gradient" onClick={uploadImage}>
+      <Button shadow color="primary" onClick={uploadImage}>
         Last opp bilde
       </Button>
     </div>

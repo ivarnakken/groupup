@@ -11,14 +11,16 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', parser.single('image'), async (req, res) => {
-  console.log('hi');
-  const event = new Event({
+  const eventData = {
     title: req.body.title,
     location: req.body.location,
     date: req.body.date,
     description: req.body.description,
-    image: req.file.path,
-  });
+  };
+  if (req.file) {
+    eventData.image = req.file.path;
+  }
+  const event = new Event(eventData);
   event.save();
   // delete req.body._id; // for safety reasons
   res.send(event);

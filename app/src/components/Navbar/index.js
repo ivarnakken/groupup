@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Login from '../Login/index';
-import { Button, Text } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import './style.css';
 import { NavLink } from 'react-router-dom';
 
@@ -11,16 +11,7 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <NavLink to="/" className="logo">
-          <Text
-            h1
-            size={40}
-            css={{
-              textGradient: '30deg, $green500 -10%, $green400 50%',
-            }}
-            weight="bold"
-          >
-            GroupUp
-          </Text>
+          <img src="/logo.png" height={20} width={125} />
         </NavLink>
         <div className="links">
           <NavLink to="/group">Opprett gruppe</NavLink>
@@ -28,9 +19,8 @@ const Navbar = () => {
           <NavLink to="/create-event">Opprett arrangement</NavLink>
           <Button
             onClick={() => setShowLogin(!showLogin)}
-            bordered
             rounded
-            color="secondary"
+            color="primary"
             auto
           >
             Logg inn

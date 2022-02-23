@@ -47,7 +47,7 @@ Event.propTypes = {
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  tags: PropTypes.array.isRequired, // ?
+  tags: PropTypes.array,
 };
 
 export default Event;

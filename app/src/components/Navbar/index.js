@@ -17,6 +17,7 @@ const Navbar = () => {
           <NavLink to="/group">Opprett gruppe</NavLink>
           <NavLink to="/events">Arrangementer</NavLink>
           <NavLink to="/create-event">Opprett arrangement</NavLink>
+          <NavLink to="/profile">Min side</NavLink>
           <Button
             onClick={() => setShowLogin(!showLogin)}
             rounded

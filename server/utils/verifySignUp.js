@@ -2,7 +2,7 @@ const ROLES = ['user', 'admin'];
 
 const User = require('../models/user');
 
-const checkDuplicateUsername = (req, res) => {
+const checkDuplicateUsername = (req, res, next) => {
   User.findOne({
     username: req.body.username,
   }).exec((err, user) => {
@@ -14,6 +14,7 @@ const checkDuplicateUsername = (req, res) => {
       res.status(400).send({ message: 'Failed! Username is already in use!' });
       return;
     }
+    next();
   });
 };
 

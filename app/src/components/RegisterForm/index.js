@@ -1,44 +1,33 @@
-import { Modal, Input, Button, Text, Row, Loading } from '@nextui-org/react';
+import { Modal, Input, Button, Text, Row } from '@nextui-org/react';
 import { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../actions/auth';
+import { useDispatch } from 'react-redux';
+import { register } from '../../actions/auth';
 import './style.css';
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [visible, setVisible] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setLoading] = useState(false);
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
-  const history = useNavigate();
 
   const closeHandler = () => {
     setVisible(false);
   };
 
-  const handleLogin = (event) => {
+  const handleRegister = (event) => {
     event.preventDefault();
-    setLoading(true);
-    dispatch(login(username, password))
+    dispatch(register(username, password))
       .then(() => {
-        history('/profile');
         window.location.reload();
       })
-      .catch(() => {
-        setLoading(false);
+      .catch((err) => {
+        console.error(err);
       });
   };
 
-  if (isLoggedIn) {
-    return <Navigate to="/profile" />;
-  }
-
   return (
-    <form id="login" onSubmit={handleLogin}>
+    <form id="login" onSubmit={handleRegister}>
       <Modal
         closeButton
         aria-labelledby="modal-title"
@@ -80,12 +69,10 @@ const LoginForm = () => {
               color="primary"
               form="login"
               type="submit"
-              disabled={isLoading}
               onClick={closeHandler}
-              className="loginBtn"
+              className="registerBtn"
             >
-              {isLoading && <Loading color="primary" />}
-              Logg inn
+              Registrer deg
             </Button>
           </Row>
         </Modal.Body>
@@ -94,4 +81,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

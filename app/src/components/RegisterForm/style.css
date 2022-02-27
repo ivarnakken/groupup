@@ -10,7 +10,7 @@
   gap: 0.5em;
 }
 
-.loginBtn {
+.registerBtn {
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -15,7 +15,7 @@ router.post('/', parser.single('image'), async (req, res) => {
     leader: req.body.leader,
     members: req.body.members,
   };
-  //Siden image ikke er obligatorisk er det ikke sikkert req.file finnes
+  //Bacause image is not required it is not sure that req.file exists
   if (req.file) {
     groupData.image = req.file.path;
   }

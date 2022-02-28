@@ -1,7 +1,7 @@
-const app = require('./app.js')();
 /* Using "dotenv" to retrieve environment variables from your .env file, and "path" is used to find this file */
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+const app = require('./app.js')();
 
 // Setup for Mongoose
 /* Set the MONGODB_URI .env-variable to the MongoDB URI. Ask somebody if you don't have this */

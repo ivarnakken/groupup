@@ -8,9 +8,11 @@ let request;
 const exampleUsers = [
   {
     username: 'groupie',
+    password: 'secret',
   },
   {
     username: 'groupette',
+    password: 'secret',
   },
 ];
 
@@ -52,21 +54,23 @@ describe('the user route', () => {
       });
   });
 
-  it('adds a user to the database with POST /user', async () => {
+  it('adds a user to the database with POST /auth/signup', async () => {
     const data = {
       username: 'grupert',
+      password: 'secret',
+      roles: ['user'],
     };
     await request
-      .post('/user')
+      .post('/auth/signup')
       .send(data)
       .expect(200)
       .then(async (res) => {
         //Check that the response is correct
-        expect(res.body._id).toBeTruthy();
-        expect(res.body.username).toBe(data.username);
+        expect(res.body._doc._id).toBeTruthy();
+        expect(res.body._doc.username).toBe(data.username);
 
         //Check that the user is in the database
-        const user = await User.findOne({ _id: res.body._id });
+        const user = await User.findOne({ _id: res.body._doc._id });
         expect(user).toBeTruthy();
         expect(user.username).toBe(data.username);
       });

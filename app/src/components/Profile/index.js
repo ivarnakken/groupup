@@ -1,6 +1,14 @@
 import { Text, Card, Row, Col, Grid, Button, Spacer } from '@nextui-org/react';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
+  const { user: currentUser } = useSelector((state) => state.auth);
+
+  if (!currentUser) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div>
       <Text
@@ -38,7 +46,7 @@ const Profile = () => {
               >
                 <Col>
                   <Text h3 color="black" css={{ textAlign: 'center' }}>
-                    Navn på innlogget bruker
+                    <strong>{currentUser.username}</strong>
                   </Text>
                 </Col>
               </Card.Header>

@@ -22,7 +22,6 @@ router.post('/', parser.single('image'), async (req, res) => {
   }
   const event = new Event(eventData);
   event.save();
-  // delete req.body._id; // for safety reasons
   res.send(event);
 });
 

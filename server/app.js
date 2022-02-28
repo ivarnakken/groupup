@@ -16,11 +16,14 @@ const getApp = () => {
     })
   );
 
-  const event = require('./routes/event');
-  app.use('/event', event);
+  const auth = require('./routes/auth');
+  app.use('/auth', auth);
 
   const user = require('./routes/user');
   app.use('/user', user);
+
+  const event = require('./routes/event');
+  app.use('/event', event);
 
   const group = require('./routes/group');
   app.use('/group', group);

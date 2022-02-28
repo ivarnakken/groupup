@@ -24,7 +24,7 @@ const theme = createTheme({
     },
     space: {},
     fonts: {
-      sans: 'Helvetica Neue',
+      sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
     },
   },
 });

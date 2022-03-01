@@ -10,7 +10,7 @@ const Profile = () => {
   }
 
   return (
-    <div>
+    <div className='content'>
       <Text
         h1
         size={40}
@@ -30,8 +30,7 @@ const Profile = () => {
 
       <div>
         <Row>
-          <Spacer x={1} />
-          <Grid xs={12} sm={5}>
+          <Grid xs={12} sm={6}>
             <Card cover css={{ w: '100%' }}>
               <Card.Header
                 blur
@@ -98,7 +97,7 @@ const Profile = () => {
             </Card>
           </Grid>
           <Spacer x={1} />
-          <Grid xs={12} sm={5}>
+          <Grid xs={12} sm={6}>
             <Card cover css={{ w: '100%' }}>
               <Card.Header
                 blur
@@ -140,69 +139,6 @@ const Profile = () => {
                   <Col>
                     <Text color="#000" size={12}>
                       Her finner du oversikt over gruppene du er med i
-                    </Text>
-                  </Col>
-                  <Col>
-                    <Row justify="flex-end">
-                      <Button flat auto rounded color="secondary">
-                        <Text
-                          css={{ color: 'inherit' }}
-                          size={12}
-                          weight="bold"
-                          transform="uppercase"
-                        >
-                          Vis grupper
-                        </Text>
-                      </Button>
-                    </Row>
-                  </Col>
-                </Row>
-              </Card.Footer>
-            </Card>
-          </Grid>
-          <Spacer x={1} />
-          <Grid xs={12} sm={5}>
-            <Card cover css={{ w: '100%' }}>
-              <Card.Header
-                blur
-                css={{
-                  position: 'absolute',
-                  bgBlur: '#FFFFFF',
-                  borderTop:
-                    '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-                  zIndex: 1,
-                  top: 0,
-                }}
-              >
-                <Col>
-                  <Text h3 color="black" css={{ textAlign: 'center' }}>
-                    Grupper jeg administrerer
-                  </Text>
-                </Col>
-              </Card.Header>
-              <Card.Body>
-                <Card.Image
-                  src="./tur.jpg"
-                  height={400}
-                  width="100%"
-                  alt="Card example background"
-                />
-              </Card.Body>
-              <Card.Footer
-                blur
-                css={{
-                  position: 'absolute',
-                  bgBlur: '#FFFFFF',
-                  borderTop:
-                    '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-                  bottom: 0,
-                  zIndex: 1,
-                }}
-              >
-                <Row>
-                  <Col>
-                    <Text color="#000" size={12}>
-                      Her finner du oversikt over gruppene du administrerer
                     </Text>
                   </Col>
                   <Col>

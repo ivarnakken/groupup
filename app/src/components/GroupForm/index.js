@@ -1,13 +1,15 @@
 import { Text, Input, Button } from '@nextui-org/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import AsyncSelect from 'react-select/async';
 import ImageUploadButton from '../ImageUploadButton';
 
 const GroupForm = () => {
+  const { user: currentUser } = useSelector((state) => state.auth);
+
   const [formValue, setFormValue] = useState({
     name: '',
-    leader: '',
     image: '',
   });
 
@@ -29,10 +31,12 @@ const GroupForm = () => {
     try {
       const formData = new FormData();
       formData.append('name', formValue.name);
-      formData.append('leader', formValue.leader);
+      formData.append('leader', currentUser.id);
+      formData.append('members', JSON.stringify(members));
       formData.append('image', formValue.image);
-      formData.append('members', members);
-      // TODO: Use fetch instad of axios
+
+      console.table(formData);
+
       await axios.post('http://localhost:8000/group/', formData);
     } catch (err) {
       console.error(err);
@@ -66,14 +70,10 @@ const GroupForm = () => {
       }, 500)
     );
 
-  const handleSelectChange = (selectedOptions) => {
-    setMembers(selectedOptions);
-  };
-
   return (
     <div className="content">
       <div className="header">
-        <Text h1 size={40} color="primary" weight="medium" className="header">
+        <Text h1 size={40} color="primary" weight="bold" className="header">
           Opprett gruppe
         </Text>
       </div>
@@ -90,23 +90,14 @@ const GroupForm = () => {
             underlined
             required
           />
-          <Input
-            type="text"
-            name="leader"
-            labelPlaceholder="Gruppeleder"
-            value={formValue.leader}
-            onChange={handleChange}
-            clearable
-            underlined
-            required
-          />
           <AsyncSelect
+            placeholder="Medlemmer"
             isMulti
             cacheOptions
             defaultOptions
             value={members}
             loadOptions={promiseOptions}
-            onChange={handleSelectChange}
+            onChange={(selectedOptions) => setMembers(selectedOptions)}
             onInputChange={setInputValue}
             getOptionLabel={(user) => user.username}
             getOptionValue={(user) => user._id}

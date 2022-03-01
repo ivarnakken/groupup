@@ -52,9 +52,8 @@ const RegisterForm = () => {
             color="primary"
             placeholder="Brukernavn"
           />
-          <Input
+          <Input.Password
             form="login"
-            type="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

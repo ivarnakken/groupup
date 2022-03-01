@@ -1,0 +1,31 @@
+.eventList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    gap: 2em;
+    /* TODO: Optimize this .... */
+    margin-left: 300px;
+    margin-right: 300px; 
+}
+
+.createBtn {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #206c7a;
+    bottom: 80px;
+    right: 80px;
+}
+
+.createBtn .plusIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    color: white;
+}

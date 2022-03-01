@@ -12,8 +12,7 @@ const EditProfile = () => {
     console.log('closed');
   };
 
-  const [formValue, setFormValue] = useState({
-  });
+  const [formValue, setFormValue] = useState({});
 
   const handleImage = (profile) => {
     setFormValue({
@@ -29,13 +28,12 @@ const EditProfile = () => {
     });
   };
 
-
   //endre denne
   const handleSubmit = async (profile) => {
     profile.preventDefault();
     try {
       const formData = new FormData();
-      formData.append('user', JSON.stringify(currentUser) );
+      formData.append('user', JSON.stringify(currentUser));
       if (formValue.username) {
         formData.append('username', formValue.username);
       }
@@ -55,63 +53,59 @@ const EditProfile = () => {
     }
   };
 
-
   return (
     <div>
       <form id="editProfileForm" onSubmit={handleSubmit}>
-      <Modal
-        closeButton
-        aria-labelledby="modal-title"
-        open={visible}
-        onClose={closeHandler}
-      >
-        <Modal.Header>
-          <Text id="modal-title" size={18}>
-            Rediger profil
-          </Text>
-        </Modal.Header>
-        <Modal.Body>
-        <Spacer y={1} />
-          <Input
-            clearable
-            underlined
-            onChange={handleChange}
-            labelPlaceholder="Name"
-            form="editProfileForm"
-            initialValue={currentUser.username}
-            name="username"
-            type="text"
-        
-          />
-          <Spacer y={1} />
-          <Input
-            clearable
-            underlined
-            onChange={handleChange}
-            labelPlaceholder="Lokasjon"
-            form="editProfileForm"
-            initialValue={currentUser.location}
-            name="location"
-            type="text"
-            
-          />
-          <Spacer y={1} />
-          <Input
-            clearable
-            underlined
-            onChange={handleChange}
-            form="editProfileForm"
-            labelPlaceholder="Passord"
-            name="password"
-            type="password"
-            
-          />
-          <Button auto type="submit" form="editProfileForm">
-            Ok
-          </Button>
-          <ImageUploadButton name="image" onChange={handleImage} />
-        </Modal.Body>
-      </Modal>
+        <Modal
+          closeButton
+          aria-labelledby="modal-title"
+          open={visible}
+          onClose={closeHandler}
+        >
+          <Modal.Header>
+            <Text id="modal-title" size={18}>
+              Rediger profil
+            </Text>
+          </Modal.Header>
+          <Modal.Body>
+            <Spacer y={1} />
+            <Input
+              clearable
+              underlined
+              onChange={handleChange}
+              labelPlaceholder="Name"
+              form="editProfileForm"
+              initialValue={currentUser.username}
+              name="username"
+              type="text"
+            />
+            <Spacer y={1} />
+            <Input
+              clearable
+              underlined
+              onChange={handleChange}
+              labelPlaceholder="Lokasjon"
+              form="editProfileForm"
+              initialValue={currentUser.location}
+              name="location"
+              type="text"
+            />
+            <Spacer y={1} />
+            <Input
+              clearable
+              underlined
+              onChange={handleChange}
+              form="editProfileForm"
+              labelPlaceholder="Passord"
+              name="password"
+              type="password"
+            />
+            <Button auto type="submit" form="editProfileForm">
+              Ok
+            </Button>
+            <ImageUploadButton name="image" onChange={handleImage} />
+          </Modal.Body>
+        </Modal>
       </form>
     </div>
   );

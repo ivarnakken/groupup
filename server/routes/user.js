@@ -28,11 +28,9 @@ router.post('/', async (req, res) => {
 router.put('/', parser.single('image'), async (req, res) => {
   const user = JSON.parse(req.body.user);
 
-  const userData = {
-
-  };
+  const userData = {};
   if (req.body.username) {
-      userData.username = req.body.username;
+    userData.username = req.body.username;
   }
   if (req.body.location) {
     userData.location = req.body.location;
@@ -45,9 +43,8 @@ router.put('/', parser.single('image'), async (req, res) => {
   if (req.file) {
     userData.image = req.file.path;
   }
-  let updatedUser = await User.findOneAndUpdate({_id: user.id}, userData);
+  let updatedUser = await User.findOneAndUpdate({ _id: user.id }, userData);
   res.send(updatedUser);
 });
-
 
 module.exports = router;

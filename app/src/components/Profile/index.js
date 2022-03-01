@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import Request from '../Request';
 import axios from 'axios';
 import EditProfile from '../EditProfile';
+import './style.css';
 
 const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -38,7 +39,7 @@ const Profile = () => {
 
   return (
     <>
-      <div>
+      <div className="content">
         <Text
           h1
           size={40}
@@ -56,9 +57,10 @@ const Profile = () => {
           </Text>
         </div>
 
-        <div>
+        <div id="profileElements">
           <Row>
-            <Grid xs={12} sm={6}>
+            <Spacer x={1} />
+            <Grid xs={12} sm={5}>
               <Card cover css={{ w: '100%' }}>
                 <Card.Header
                   blur
@@ -124,9 +126,8 @@ const Profile = () => {
                   </Row>
                 </Card.Footer>
               </Card>
-            </Grid>
-            <Spacer x={1} />
-            <Grid xs={12} sm={6}>
+              <Spacer x={1} />
+
               <Card cover css={{ w: '100%' }}>
                 <Card.Header
                   blur
@@ -141,13 +142,13 @@ const Profile = () => {
                 >
                   <Col>
                     <Text h3 color="black" css={{ textAlign: 'center' }}>
-                      Grupper jeg er medlem av
+                      Grupper jeg administrerer
                     </Text>
                   </Col>
                 </Card.Header>
                 <Card.Body>
                   <Card.Image
-                    src="./kajakk.jpg"
+                    src="./tur.jpg"
                     height={400}
                     width="100%"
                     alt="Card example background"
@@ -167,7 +168,7 @@ const Profile = () => {
                   <Row>
                     <Col>
                       <Text color="#000" size={12}>
-                        Her finner du oversikt over gruppene du er med i
+                        Her finner du oversikt over gruppene du administrerer
                       </Text>
                     </Col>
                     <Col>

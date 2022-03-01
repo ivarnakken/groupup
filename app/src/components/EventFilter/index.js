@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
+import './style.css';
 
 const EventFilter = ({ allEvents, setOutEvents }) => {
   const [tagOptions, setTagOptions] = useState([]);

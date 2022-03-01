@@ -1,15 +1,15 @@
 import { Text, Modal, Button, Input, Spacer } from '@nextui-org/react';
 import { useState } from 'react';
 import ImageUploadButton from '../ImageUploadButton';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { editUser } from '../../actions/editUser';
 
 const EditProfile = () => {
   const [visible, setVisible] = useState(true);
   const { user: currentUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const closeHandler = () => {
     setVisible(false);
-    console.log('closed');
   };
 
   const [formValue, setFormValue] = useState({});
@@ -29,28 +29,11 @@ const EditProfile = () => {
   };
 
   //endre denne
-  const handleSubmit = async (profile) => {
-    profile.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append('user', JSON.stringify(currentUser));
-      if (formValue.username) {
-        formData.append('username', formValue.username);
-      }
-      if (formValue.location) {
-        formData.append('location', formValue.location);
-      }
-      if (formValue.password) {
-        formData.append('password', formValue.password);
-      }
-      if (formValue.image) {
-        formData.append('image', formValue.image);
-      }
-      // TODO: Use fetch instad of axios
-      await axios.put('http://localhost:8000/user/', formData);
-    } catch (err) {
-      console.error(err);
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(editUser(formValue)).then(() => {
+      window.location.reload();
+    });
   };
 
   return (
@@ -100,10 +83,15 @@ const EditProfile = () => {
               name="password"
               type="password"
             />
-            <Button auto type="submit" form="editProfileForm">
+            <ImageUploadButton name="image" onChange={handleImage} />
+            <Button
+              auto
+              type="submit"
+              form="editProfileForm"
+              onClick={closeHandler}
+            >
               Ok
             </Button>
-            <ImageUploadButton name="image" onChange={handleImage} />
           </Modal.Body>
         </Modal>
       </form>

@@ -11,14 +11,14 @@ const exampleEvents = [
     location: 'Stranda',
     date: new Date('2022-02-25T00:00:00.000Z'),
     description: 'Alle må joine da! 😁',
-    tags: [],
+    tags: '[]',
   },
   {
     title: 'Kino med gutta',
     location: 'Kinoen',
     date: new Date('2022-03-04T00:00:00.000Z'),
     description: 'Gutta ONLY 😎🎬',
-    tags: ['kino'],
+    tags: "['kino']",
   },
 ];
 
@@ -74,7 +74,7 @@ describe('the event route', () => {
       location: 'Hjemme hos Frida',
       date: new Date('2022-04-22T00:00:00.000Z'),
       description: 'Ta med skjøteledning selv. Mamma står for pizzaboller.',
-      tags: [],
+      tags: '[]',
     };
     await request
       .post('/event')

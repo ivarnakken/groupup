@@ -25,7 +25,6 @@ router.post('/', async (req, res) => {
   res.send(user);
 });
 
-//Legg inn parser her VVVVVVVVVV
 router.put('/', parser.single('image'), async (req, res) => {
   try {
     const user = JSON.parse(req.body.user);
@@ -41,8 +40,6 @@ router.put('/', parser.single('image'), async (req, res) => {
     if (req.body.password) {
       userData.password = req.body.password;
     }
-
-    //Siden image ikke er obligatorisk er det ikke sikkert req.file finnes
     if (req.file) {
       userData.image = req.file.path;
     }

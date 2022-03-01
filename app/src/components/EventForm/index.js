@@ -3,6 +3,7 @@ import './style.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import ImageUploadButton from '../ImageUploadButton';
 
 const EventForm = () => {
   const [formValue, setFormValue] = useState({
@@ -11,6 +12,7 @@ const EventForm = () => {
     date: new Date(),
     description: '',
     tags: [],
+    image: '',
   });
 
   const [tagOptions, setTagOptions] = useState([]);
@@ -39,12 +41,27 @@ const EventForm = () => {
     });
   };
 
+  const handleImage = (event) => {
+    setFormValue({
+      ...formValue,
+      image: event.target.files[0],
+    });
+  };
+
   /* We handle the submit with Axios, instead of an action on the form itself because we don't want to be redirected to the post url (https://localhost:8000/event/) */
   const handleSubmit = async (event) => {
     event.preventDefault(); // The default is GET, and must be prevented
     try {
+      // Images can't be sent via JSON (not without encoding), but they can be sent as form data
+      const formData = new FormData();
+      formData.append('title', formValue.title);
+      formData.append('location', formValue.location);
+      formData.append('date', formValue.date);
+      formData.append('description', formValue.description);
+      formData.append('tags', JSON.stringify(formValue.tags));
+      formData.append('image', formValue.image);
       // Make axios POST request
-      await axios.post('http://localhost:8000/event/', formValue);
+      await axios.post('http://localhost:8000/event/', formData);
     } catch (err) {
       console.error(err);
     }
@@ -94,11 +111,12 @@ const EventForm = () => {
             isMulti
             onChange={handleSelectChange}
           />
+          <ImageUploadButton name="image" onChange={handleImage} />
+
           <Button type="submit" shadow color="primary">
             Opprett
           </Button>
         </div>
-
         <Textarea
           name="description"
           value={formValue.description}

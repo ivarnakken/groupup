@@ -11,11 +11,9 @@ const EventList = () => {
     getAllEvents();
   }, []);
 
-  const getAllEvents = () => {
-    axios.get('http://localhost:8000/event').then((response) => {
-      console.log(response);
+  const getAllEvents = async () => {
+    await axios.get('http://localhost:8000/event').then((response) => {
       setEvents(response.data);
-      console.log(events);
     });
   };
 
@@ -32,6 +30,7 @@ const EventList = () => {
               location={event.location}
               date={event.date}
               tags={event.tags}
+              image={event.image}
             />
           );
         })}

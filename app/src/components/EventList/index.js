@@ -5,7 +5,8 @@ import EventFilter from '../EventFilter';
 import axios from 'axios';
 
 const EventList = () => {
-  const [events, setEvents] = useState([]);
+  const [allEvents, setAllEvents] = useState([]);
+  const [outEvents, setOutEvents] = useState([]);
 
   useEffect(() => {
     getAllEvents();
@@ -13,15 +14,16 @@ const EventList = () => {
 
   const getAllEvents = async () => {
     await axios.get('http://localhost:8000/event').then((response) => {
-      setEvents(response.data);
+      setAllEvents(response.data);
+      setOutEvents(response.data);
     });
   };
 
   return (
     <div className="events">
-      <EventFilter />
+      <EventFilter allEvents={allEvents} setOutEvents={setOutEvents} />
       <Grid.Container gap={2} justify="center">
-        {events.map((event) => {
+        {outEvents.map((event) => {
           return (
             <Event
               key={event._id}

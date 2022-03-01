@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const parser = require('../middleware/cloudinary.config');
 
-//const mongoose = require('mongoose');
 const Event = require('../models/event');
 
 router.get('/', async (req, res) => {
-  const events = await Event.find();
+  const events = await Event.find().populate('group');
   res.send(events);
 });
 
@@ -18,6 +17,7 @@ router.post('/', parser.single('image'), async (req, res) => {
     date: req.body.date,
     description: req.body.description,
     tags: JSON.parse(req.body.tags),
+    group: req.body.group,
   };
   if (req.file) {
     eventData.image = req.file.path;

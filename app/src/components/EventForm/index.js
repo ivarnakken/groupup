@@ -1,9 +1,10 @@
-import { Button, Input, Text, Textarea } from '@nextui-org/react';
-import './style.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 import ImageUploadButton from '../ImageUploadButton';
+import { Button, Input, Text, Textarea } from '@nextui-org/react';
+import './style.css';
 
 const EventForm = () => {
   const [formValue, setFormValue] = useState({
@@ -48,7 +49,6 @@ const EventForm = () => {
     });
   };
 
-  /* We handle the submit with Axios, instead of an action on the form itself because we don't want to be redirected to the post url (https://localhost:8000/event/) */
   const handleSubmit = async (event) => {
     event.preventDefault(); // The default is GET, and must be prevented
     try {
@@ -60,17 +60,44 @@ const EventForm = () => {
       formData.append('description', formValue.description);
       formData.append('tags', JSON.stringify(formValue.tags));
       formData.append('image', formValue.image);
-      // Make axios POST request
+      formData.append('group', group._id);
+
       await axios.post('http://localhost:8000/event/', formData);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const [groups, setGroups] = useState([]);
+  const [group, setGroup] = useState({});
+  const [inputValue, setInputValue] = useState('');
+
+  const getGroups = async () => {
+    await axios.get('http://localhost:8000/group/').then((response) => {
+      setGroups(response.data);
+    });
+  };
+
+  useEffect(() => {
+    getGroups();
+  }, []);
+
+  const filterUsers = (inputValue) => {
+    return groups.filter((group) =>
+      group.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
+
+  const promiseOptions = () =>
+    new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(filterUsers(inputValue));
+      }, 500)
+    );
   return (
     <div className="content">
       <div className="header">
-        <Text h1 size={40} color="primary" weight="medium" className="header">
+        <Text h1 size={40} color="primary" weight="bold" className="header">
           Opprett arrangement
         </Text>
       </div>
@@ -110,6 +137,17 @@ const EventForm = () => {
             options={tagOptions}
             isMulti
             onChange={handleSelectChange}
+          />
+          <AsyncSelect
+            placeholder="Gruppe"
+            cacheOptions
+            defaultOptions
+            value={group}
+            loadOptions={promiseOptions}
+            onChange={(selectedOption) => setGroup(selectedOption)}
+            onInputChange={setInputValue}
+            getOptionLabel={(group) => group.name}
+            getOptionValue={(group) => group._id}
           />
           <ImageUploadButton name="image" onChange={handleImage} />
 

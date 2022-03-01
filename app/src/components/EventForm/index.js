@@ -1,7 +1,8 @@
 import { Button, Input, Text, Textarea } from '@nextui-org/react';
 import './style.css';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
 import ImageUploadButton from '../ImageUploadButton';
 
 const EventForm = () => {
@@ -10,13 +11,33 @@ const EventForm = () => {
     location: '',
     date: new Date(),
     description: '',
+    tags: [],
     image: '',
   });
+
+  const [tagOptions, setTagOptions] = useState([]);
+
+  useEffect(() => {
+    getTags();
+  }, []);
+
+  const getTags = () => {
+    axios.get('http://localhost:8000/tag').then((response) => {
+      setTagOptions(response.data);
+    });
+  };
 
   const handleChange = (event) => {
     setFormValue({
       ...formValue,
       [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSelectChange = (selectedOptions) => {
+    setFormValue({
+      ...formValue,
+      tags: selectedOptions.map((option) => option.value),
     });
   };
 
@@ -37,6 +58,7 @@ const EventForm = () => {
       formData.append('location', formValue.location);
       formData.append('date', formValue.date);
       formData.append('description', formValue.description);
+      formData.append('tags', JSON.stringify(formValue.tags));
       formData.append('image', formValue.image);
       // Make axios POST request
       await axios.post('http://localhost:8000/event/', formData);
@@ -82,6 +104,12 @@ const EventForm = () => {
             onChange={handleChange}
             underlined
             required
+          />
+          <Select
+            placeholder="Emneknagger"
+            options={tagOptions}
+            isMulti
+            onChange={handleSelectChange}
           />
           <ImageUploadButton name="image" onChange={handleImage} />
 

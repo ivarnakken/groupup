@@ -28,6 +28,9 @@ const getApp = () => {
   const group = require('./routes/group');
   app.use('/group', group);
 
+  const tag = require('./routes/tag');
+  app.use('/tag', tag);
+
   return app;
 };
 

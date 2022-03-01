@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Grid } from '@nextui-org/react';
 import Event from './../Event';
+import EventFilter from '../EventFilter';
 import axios from 'axios';
 
 const EventList = () => {
@@ -17,20 +18,24 @@ const EventList = () => {
   };
 
   return (
-    <Grid.Container gap={2} justify="center">
-      {events.map((event) => {
-        return (
-          <Event
-            key={event._id}
-            title={event.title}
-            description={event.description}
-            location={event.location}
-            date={event.date}
-            image={event.image}
-          />
-        );
-      })}
-    </Grid.Container>
+    <div className="events">
+      <EventFilter />
+      <Grid.Container gap={2} justify="center">
+        {events.map((event) => {
+          return (
+            <Event
+              key={event._id}
+              title={event.title}
+              description={event.description}
+              location={event.location}
+              date={event.date}
+              tags={event.tags}
+              image={event.image}
+            />
+          );
+        })}
+      </Grid.Container>
+    </div>
   );
 };
 

@@ -38,6 +38,9 @@ const Event = (props) => {
             <Text h4 color="#FFFFFF">
               {props.title}
             </Text>
+            <Text color="#FFFFFF">
+              {props.tags.length ? '#' + props.tags.join(' #') : ''}
+            </Text>
             <Text color="#FFFFFF">{props.description}</Text>
           </Col>
         </Card.Body>
@@ -82,6 +85,7 @@ Event.propTypes = {
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
+  tags: PropTypes.array,
   image: PropTypes.string,
 };
 

@@ -13,7 +13,7 @@ router.post('/', parser.single('image'), async (req, res) => {
   const groupData = {
     name: req.body.name,
     leader: req.body.leader,
-    members: req.body.members,
+    members: [...new Set([...JSON.parse(req.body.members), req.body.leader])],
   };
   //Bacause image is not required it is not sure that req.file exists
   if (req.file) {

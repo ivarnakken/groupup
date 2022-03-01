@@ -99,6 +99,8 @@ router.post('/signin', async (req, res) => {
       res.status(200).send({
         id: user._id,
         username: user.username,
+        location: user.location,
+        image: user.image,
         roles: authorities,
         accessToken: token,
       });

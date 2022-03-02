@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
 import ImageUploadButton from '../ImageUploadButton';
 import { Button, Input, Text, Textarea } from '@nextui-org/react';
@@ -11,13 +12,33 @@ const EventForm = () => {
     location: '',
     date: new Date(),
     description: '',
+    tags: [],
     image: '',
   });
+
+  const [tagOptions, setTagOptions] = useState([]);
+
+  useEffect(() => {
+    getTags();
+  }, []);
+
+  const getTags = () => {
+    axios.get('http://localhost:8000/tag').then((response) => {
+      setTagOptions(response.data);
+    });
+  };
 
   const handleChange = (event) => {
     setFormValue({
       ...formValue,
       [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSelectChange = (selectedOptions) => {
+    setFormValue({
+      ...formValue,
+      tags: selectedOptions.map((option) => option.value),
     });
   };
 
@@ -37,6 +58,7 @@ const EventForm = () => {
       formData.append('location', formValue.location);
       formData.append('date', formValue.date);
       formData.append('description', formValue.description);
+      formData.append('tags', JSON.stringify(formValue.tags));
       formData.append('image', formValue.image);
       formData.append('group', group._id);
 
@@ -109,6 +131,12 @@ const EventForm = () => {
             onChange={handleChange}
             underlined
             required
+          />
+          <Select
+            placeholder="Emneknagger"
+            options={tagOptions}
+            isMulti
+            onChange={handleSelectChange}
           />
           <AsyncSelect
             placeholder="Gruppe"

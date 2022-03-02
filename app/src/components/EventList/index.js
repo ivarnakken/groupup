@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import Event from '../Event';
+import EventFilter from '../EventFilter';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './style.css';
 import { Text } from '@nextui-org/react';
 
 const EventList = () => {
-  const [events, setEvents] = useState([]);
+  const [allEvents, setAllEvents] = useState([]);
+  const [outEvents, setOutEvents] = useState([]);
 
   useEffect(() => {
     getAllEvents();
@@ -14,7 +16,8 @@ const EventList = () => {
 
   const getAllEvents = async () => {
     await axios.get('http://localhost:8000/event').then((response) => {
-      setEvents(response.data);
+      setAllEvents(response.data);
+      setOutEvents(response.data);
     });
   };
 
@@ -25,8 +28,9 @@ const EventList = () => {
           <Text h1 size={40} color="primary" weight="bold">
             Arrangementer
           </Text>
+          <EventFilter allEvents={allEvents} setOutEvents={setOutEvents} />
         </div>
-        {events.map((event) => {
+        {outEvents.map((event) => {
           return (
             <Event
               key={event._id}
@@ -36,6 +40,7 @@ const EventList = () => {
               location={event.location}
               date={event.date}
               image={event.image}
+              tags={event.tags}
               group={event.group}
               className="event"
             />

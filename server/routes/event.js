@@ -15,6 +15,7 @@ router.post('/', parser.single('image'), async (req, res) => {
     location: req.body.location,
     date: req.body.date,
     description: req.body.description,
+    tags: JSON.parse(req.body.tags),
     group: req.body.group,
   };
   if (req.file) {

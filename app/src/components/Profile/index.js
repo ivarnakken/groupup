@@ -1,16 +1,41 @@
-import { Text, Card, Row, Col, Grid, Button, Spacer } from '@nextui-org/react';
+import {
+  Text,
+  Card,
+  Row,
+  Col,
+  Grid,
+  Button,
+  Spacer,
+  Container,
+} from '@nextui-org/react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import Request from '../Request';
+import axios from 'axios';
 
 const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
+
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    getRequests();
+  }, []);
+
+  const getRequests = async () => {
+    console.log('Helo');
+    await axios.get('http://localhost:8000/request').then((response) => {
+      setRequests(response.data);
+    });
+  };
 
   if (!currentUser) {
     return <Navigate to="/" />;
   }
 
   return (
-    <div className='content'>
+    <div className="content">
       <Text
         h1
         size={40}
@@ -162,6 +187,13 @@ const Profile = () => {
           <Spacer x={1} />
         </Row>
       </div>
+      <Spacer x={1} />
+      <Container>
+        <Text h2>Forespørsler</Text>
+        {requests.map((request) => (
+          <Request key={request._id} event={request.event}></Request>
+        ))}
+      </Container>
     </div>
   );
 };

@@ -5,12 +5,14 @@ import EventForm from './components/EventForm';
 import EventList from './components/EventList';
 import GroupForm from './components/GroupForm';
 import Profile from './components/Profile';
+import Home from './components/Home';
 
 const rootElement = document.getElementById('root');
 render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
+        <Route path="/" element={<Home />} />
         <Route path="events" element={<EventList />} />
         <Route path="events/create" element={<EventForm />} />
         <Route path="group" element={<GroupForm />} />

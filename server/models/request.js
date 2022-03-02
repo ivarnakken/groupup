@@ -13,7 +13,7 @@ const RequestSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending, accepted, declined'],
+    enum: ['pending', 'accepted', 'declined'],
     default: 'pending',
   },
 });

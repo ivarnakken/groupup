@@ -132,6 +132,7 @@ Event.propTypes = {
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
   image: PropTypes.string,
   group: PropTypes.object,
 };

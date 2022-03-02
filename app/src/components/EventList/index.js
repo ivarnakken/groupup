@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Grid } from '@nextui-org/react';
-import Event from './../Event';
+import Event from '../Event';
 import EventFilter from '../EventFilter';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import './style.css';
+import { Text } from '@nextui-org/react';
 
 const EventList = () => {
   const [allEvents, setAllEvents] = useState([]);
@@ -20,24 +22,35 @@ const EventList = () => {
   };
 
   return (
-    <div className="events">
-      <EventFilter allEvents={allEvents} setOutEvents={setOutEvents} />
-      <Grid.Container gap={2} justify="center">
+    <>
+      <div className="eventList">
+        <div className="header">
+          <Text h1 size={40} color="primary" weight="bold">
+            Arrangementer
+          </Text>
+          <EventFilter allEvents={allEvents} setOutEvents={setOutEvents} />
+        </div>
         {outEvents.map((event) => {
           return (
             <Event
               key={event._id}
+              id={event._id}
               title={event.title}
               description={event.description}
               location={event.location}
               date={event.date}
-              tags={event.tags}
               image={event.image}
+              tags={event.tags}
+              group={event.group}
+              className="event"
             />
           );
         })}
-      </Grid.Container>
-    </div>
+      </div>
+      <Link to="create" className="createBtn">
+        <div className="plusIcon">+</div>
+      </Link>
+    </>
   );
 };
 

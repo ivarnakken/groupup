@@ -23,9 +23,7 @@ const theme = createTheme({
       // ...  more colors
     },
     space: {},
-    fonts: {
-      sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
-    },
+    fonts: {},
   },
 });
 
@@ -33,7 +31,7 @@ function App() {
   return (
     <NextUIProvider theme={theme}>
       <Provider store={store}>
-        <div className="App">
+        <div>
           <Navbar />
           <Outlet />
         </div>

@@ -31,6 +31,9 @@ const getApp = () => {
   const tag = require('./routes/tag');
   app.use('/tag', tag);
 
+  const request = require('./routes/request');
+  app.use('/request', request);
+
   return app;
 };
 

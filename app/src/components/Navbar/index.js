@@ -25,9 +25,9 @@ const Navbar = () => {
           <img src="/logo.png" height={20} width={125} />
         </NavLink>
         <div className="links">
-          <NavLink to="/group">Opprett gruppe</NavLink>
+          {currentUser && <NavLink to="/group">Opprett gruppe</NavLink>}
+
           <NavLink to="/events">Arrangementer</NavLink>
-          <NavLink to="/create-event">Opprett arrangement</NavLink>
           {currentUser ? (
             <>
               <NavLink to="/profile">{currentUser.username}</NavLink>

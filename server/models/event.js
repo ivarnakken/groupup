@@ -7,6 +7,11 @@ const EventSchema = new mongoose.Schema({
   description: { type: String, required: true },
   tags: { type: [String], required: false },
   image: { type: String },
+  group: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Group',
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Event', EventSchema);

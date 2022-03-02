@@ -179,35 +179,33 @@ const Profile = () => {
             </Row>
           </Card.Footer>
         </Card>
-        <Spacer x={1} />
-        <Row>
-          <Container>
-            <Text h2>Ubesvarte forespørsler</Text>
-            {incomingRequests.map((request) => {
-              return (
-                <>
-                  <Request
-                    key={request._id}
-                    request={request}
-                    incoming={true}
-                  />
-                  <Spacer x={1} />
-                </>
-              );
-            })}
-          </Container>
-          <Container>
-            <Text h2>Status på utgående forespørsler</Text>
-            {outgoingRequests.map((request) => {
-              return (
-                <>
-                  <Request key={request._id} request={request} />
-                  <Spacer x={1} />
-                </>
-              );
-            })}
-          </Container>
-        </Row>
+      </Row>
+      <Spacer x={1} />
+      <Row>
+        <Container>
+          <Text h3>Ubesvarte forespørsler</Text>
+          <Spacer x={1} />
+          {incomingRequests.map((request) => {
+            return (
+              <>
+                <Request key={request._id} request={request} incoming={true} />
+                <Spacer x={1} />
+              </>
+            );
+          })}
+        </Container>
+        <Container>
+          <Text h3>Status på utgående forespørsler</Text>
+          <Spacer x={1} />
+          {outgoingRequests.map((request) => {
+            return (
+              <>
+                <Request key={request._id} request={request} />
+                <Spacer x={1} />
+              </>
+            );
+          })}
+        </Container>
       </Row>
 
       {showEditProfile && <EditProfile />}

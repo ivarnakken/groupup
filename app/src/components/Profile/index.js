@@ -27,10 +27,13 @@ const Profile = () => {
   }, []);
 
   const getRequests = async () => {
-    console.log('Helo');
-    await axios.get('http://localhost:8000/request').then((response) => {
-      setRequests(response.data);
-    });
+    await axios
+      .get(
+        `http://localhost:8000/request?status=pending&token=${currentUser.accessToken}`
+      )
+      .then((response) => {
+        setRequests(response.data);
+      });
   };
 
   if (!currentUser) {
@@ -194,16 +197,9 @@ const Profile = () => {
         </div>
         <Spacer x={1} />
         <Container>
-          <Text h2>Forespørsler</Text>
+          <Text h2>Ubesvarte forespørsler</Text>
           {requests.map((request) => {
-            return (
-              <Request
-                key={request._id}
-                request={request._id}
-                event={request.event.title}
-                group={request.group.name}
-              ></Request>
-            );
+            return <Request key={request._id} request={request}></Request>;
           })}
         </Container>
       </div>

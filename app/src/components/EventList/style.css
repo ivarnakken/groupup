@@ -2,12 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: center;
     align-items: center;
     gap: 2em;
-    /* TODO: Optimize this .... */
-    margin-left: 300px;
-    margin-right: 300px; 
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .createBtn {

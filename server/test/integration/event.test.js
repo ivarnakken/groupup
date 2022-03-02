@@ -1,9 +1,19 @@
 const app = require('../../app')();
+const User = require('../../models/user');
+const Group = require('../../models/group');
 const Event = require('../../models/event');
 const supertest = require('supertest');
 const mockDataBase = require('../utils/mockDataBase');
 
 let request;
+const exampleUser = {
+  username: 'ExampleUser',
+  password: 'ExamplePassword',
+};
+
+const exampleGroup = {
+  name: 'ExampleGroup',
+};
 
 const exampleEvents = [
   {
@@ -32,8 +42,20 @@ afterAll(async () => {
 });
 
 beforeEach(async () => {
+  //Make an initial user
+  const user = new User(exampleUser);
+  await user.save();
+  console.log(user);
+  exampleGroup.leader = user._id;
+  const group = new Group(exampleGroup);
+  await group.save();
+
   //Initiate the database with events
-  exampleEvents.forEach((event) => new Event(event).save());
+  exampleEvents.forEach((event) => {
+    event.group = group._id;
+    const newEvent = Event(event);
+    newEvent.save();
+  });
 });
 
 afterEach(async () => {
@@ -76,6 +98,7 @@ describe('the event route', () => {
       description: 'Ta med skjøteledning selv. Mamma står for pizzaboller.',
       tags: '[]',
     };
+    data.group = await Group.findOne();
     await request
       .post('/event')
       .send(data)

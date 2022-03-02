@@ -12,6 +12,12 @@ router.post(
   '/signup',
   [verifySignUp.checkDuplicateUsername, verifySignUp.checkRolesExisted],
   async (req, res) => {
+    if (req.body.password !== req.body.passwordCopy) {
+      return res
+        .status(401)
+        .send({ message: 'De to passordene matchet ikke!' });
+    }
+
     const user = new User({
       username: req.body.username,
       password: bcrypt.hashSync(req.body.password, 8),
@@ -40,7 +46,7 @@ router.post(
               }
               res.status(200).send({
                 ...user,
-                message: 'User was registered successfully!',
+                message: 'Bruker ble registrert!',
               });
             });
           }
@@ -59,7 +65,7 @@ router.post(
             }
             res
               .status(200)
-              .send({ ...user, message: 'User was registered successfully!' });
+              .send({ ...user, message: 'Bruker ble registrert!' });
           });
         });
       }
@@ -78,7 +84,7 @@ router.post('/signin', async (req, res) => {
         return;
       }
       if (!user) {
-        return res.status(404).send({ message: 'User not found' });
+        return res.status(404).send({ message: 'Bruker ikke funnet!' });
       }
       const passwordIsValid = bcrypt.compareSync(
         req.body.password,
@@ -87,7 +93,7 @@ router.post('/signin', async (req, res) => {
       if (!passwordIsValid) {
         return res.status(401).send({
           accessToken: null,
-          message: 'Invalid password!',
+          message: 'Ugyldig passord!',
         });
       }
       const token = jwt.sign({ id: user.id }, process.env.SECRET, {

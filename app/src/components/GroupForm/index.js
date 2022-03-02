@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AsyncSelect from 'react-select/async';
 import ImageUploadButton from '../ImageUploadButton';
+import './style.css';
 
 const GroupForm = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -69,12 +70,10 @@ const GroupForm = () => {
     );
 
   return (
-    <div className="content">
-      <div className="header">
-        <Text h1 size={40} color="primary" weight="bold" className="header">
-          Opprett gruppe
-        </Text>
-      </div>
+    <div className="groupForm">
+      <Text h1 size={40} color="primary" weight="bold" className="header">
+        Opprett gruppe
+      </Text>
 
       <form onSubmit={handleSubmit}>
         <div className="inputs">

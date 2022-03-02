@@ -9,11 +9,13 @@ const exampleUsers = [
   {
     username: 'groupie',
     password: 'secret',
+    passwordCopy: 'secret',
     birthdate: new Date('12-12-2000'),
   },
   {
     username: 'groupette',
     password: 'secret',
+    passwordCopy: 'secret',
     birthdate: new Date('12-12-2000'),
   },
 ];
@@ -60,6 +62,7 @@ describe('the user route', () => {
     const data = {
       username: 'grupert',
       password: 'secret',
+      passwordCopy: 'secret',
       roles: ['user'],
       birthdate: new Date('12-12-2000'),
     };

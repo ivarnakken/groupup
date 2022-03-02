@@ -35,12 +35,14 @@ const EventFilter = ({ allEvents, setOutEvents }) => {
   };
 
   return (
-    <Select
-      placeholder="Emneknagger"
-      options={tagOptions}
-      isMulti
-      onChange={handleSelectChange}
-    />
+    <>
+      <Select
+        placeholder="Emneknagger"
+        options={tagOptions}
+        isMulti
+        onChange={handleSelectChange}
+      />
+    </>
   );
 };
 

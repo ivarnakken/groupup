@@ -8,3 +8,11 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+.requestForm {
+  width: 100%;
+}
+
+.groupLeaderSelect {
+  width: 150px;
+}

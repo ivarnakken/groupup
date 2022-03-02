@@ -1,54 +1,111 @@
-import './style.css';
-import { Card, Text, Col, Row, Button, Modal } from '@nextui-org/react';
 import PropTypes from 'prop-types';
-import { useModal } from '@nextui-org/react';
 import axios from 'axios';
-
-const getDate = (dateString) => {
-  const locale = 'no';
-  const options = {
-    dateStyle: 'medium',
-  };
-  return Intl.DateTimeFormat(locale, options).format(new Date(dateString));
-};
-
-const sendRequest = async (groupId, eventId) => {
-  await axios.post('http://localhost:8000/request/', {
-    group: groupId,
-    event: eventId,
-  });
-};
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import AsyncSelect from 'react-select/async';
+import { useModal } from '@nextui-org/react';
+import { Card, Text, Col, Row, Button, Modal, Spacer } from '@nextui-org/react';
+import './style.css';
 
 const Event = (props) => {
+  const { user: currentUser } = useSelector((state) => state.auth);
+
+  const getDate = (dateString) => {
+    const locale = 'no';
+    const options = {
+      dateStyle: 'medium',
+    };
+    return Intl.DateTimeFormat(locale, options).format(new Date(dateString));
+  };
+
+  const sendRequest = async (event, eventId) => {
+    event.preventDefault();
+    await axios.post('http://localhost:8000/request/', {
+      group: group._id,
+      event: eventId,
+    });
+  };
+
   const { setVisible, bindings } = useModal();
+
+  const [groups, setGroups] = useState([]);
+  const [group, setGroup] = useState({});
+  const [inputValue, setInputValue] = useState('');
+
+  const getGroups = async () => {
+    await axios
+      .get('http://localhost:8000/group/', {
+        params: { user: currentUser.id },
+      })
+      .then((response) => {
+        setGroups(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getGroups();
+  }, []);
+
+  const filterUsers = (inputValue) => {
+    return groups.filter((group) =>
+      group.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
+
+  const promiseOptions = () =>
+    new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(filterUsers(inputValue));
+      }, 500)
+    );
 
   return (
     <>
       <Modal {...bindings}>
-        <Modal.Header>{props.title}</Modal.Header>
-        <Modal.Body>
-          {props.description}
-          <Text color="$primaryLight" b>
-            📍 {props.location}
+        <Modal.Header>
+          <Text h3 color="primary">
+            {props.title}
           </Text>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            auto
-            rounded
-            color="primary"
-            onClick={sendRequest(props.group?._id, props.id)}
-          >
-            <Text
-              css={{ color: 'inherit' }}
-              size={12}
-              weight="bold"
-              transform="uppercase"
+        </Modal.Header>
+
+        <Modal.Body>
+          <Text>{props.description}</Text>
+          <Spacer y={0.4} />
+          <Row>
+            <box-icon name="map"></box-icon>
+            <Text>{props.location}</Text>
+          </Row>
+          {currentUser ? (
+            <form
+              onSubmit={() => sendRequest(event, props.id)}
+              className="requestForm"
             >
-              Send forespørsel
-            </Text>
-          </Button>
-        </Modal.Footer>
+              <AsyncSelect
+                placeholder="Gruppe"
+                className="groupLeaderSelect"
+                isRequired
+                cacheOptions
+                defaultOptions
+                value={group}
+                loadOptions={promiseOptions}
+                onChange={(selectedOption) => setGroup(selectedOption)}
+                onInputChange={setInputValue}
+                getOptionLabel={(group) => group.name}
+                getOptionValue={(group) => group._id}
+              />
+              <Button auto rounded color="primary" type="submit">
+                <Text
+                  css={{ color: 'inherit' }}
+                  size={12}
+                  weight="bold"
+                  transform="uppercase"
+                >
+                  Send forespørsel
+                </Text>
+              </Button>
+            </form>
+          ) : null}
+        </Modal.Body>
       </Modal>
       <Card cover css={{ bgColor: '$primaryLight' }} className="event">
         <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>

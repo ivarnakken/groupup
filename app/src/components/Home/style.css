@@ -1,0 +1,42 @@
+.home {
+  position: relative;
+  max-width: 1200px;
+  height: 100vh;
+  display: flex;
+  margin: 0 auto;
+  padding-bottom: 300px; /* The height of the footer + spacing */
+}
+
+.info {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info p {
+  margin: 0;
+}
+
+.title {
+  margin-top: -30px;
+}
+
+.comment {
+  margin-top: 20px;
+}
+
+.groupImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 50px;
+  margin-right: -10px;
+  width: 860px;
+  height: auto;
+}
+
+.homeBtn {
+  margin-top: 50px;
+  width: fit-content;
+  font-size: 1em;
+}

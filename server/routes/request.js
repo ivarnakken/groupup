@@ -4,7 +4,7 @@ const router = express.Router();
 const Request = require('../models/request');
 
 router.get('/', async (req, res) => {
-  const requests = await Request.find();
+  const requests = await Request.find().populate('group').populate('event');
   res.send(requests);
 });
 

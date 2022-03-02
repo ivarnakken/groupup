@@ -195,9 +195,16 @@ const Profile = () => {
         <Spacer x={1} />
         <Container>
           <Text h2>Forespørsler</Text>
-          {requests.map((request) => (
-            <Request key={request._id} event={request.event}></Request>
-          ))}
+          {requests.map((request) => {
+            return (
+              <Request
+                key={request._id}
+                request={request._id}
+                event={request.event.title}
+                group={request.group.name}
+              ></Request>
+            );
+          })}
         </Container>
       </div>
 

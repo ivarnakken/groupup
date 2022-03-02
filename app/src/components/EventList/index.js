@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Event from './../Event';
+import Event from '../Event';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './style.css';
@@ -30,6 +30,7 @@ const EventList = () => {
           return (
             <Event
               key={event._id}
+              id={event._id}
               title={event.title}
               description={event.description}
               location={event.location}

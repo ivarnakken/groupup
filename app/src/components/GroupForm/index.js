@@ -35,8 +35,6 @@ const GroupForm = () => {
       formData.append('members', JSON.stringify(members));
       formData.append('image', formValue.image);
 
-      console.table(formData);
-
       await axios.post('http://localhost:8000/group/', formData);
     } catch (err) {
       console.error(err);

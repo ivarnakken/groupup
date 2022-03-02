@@ -20,17 +20,30 @@ const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [showEditProfile, setShowEditProfile] = useState(false);
 
-  const [requests, setRequests] = useState([]);
+  const [incomingRequests, setIncomingRequests] = useState([]);
+  const [outgoingRequests, setOutgoingRequests] = useState([]);
 
   useEffect(() => {
     getRequests();
   }, []);
 
   const getRequests = async () => {
-    console.log('Helo');
-    await axios.get('http://localhost:8000/request').then((response) => {
-      setRequests(response.data);
-    });
+    await axios
+      .get(`http://localhost:8000/request?token=${currentUser.accessToken}`)
+      .then((response) => {
+        setIncomingRequests(
+          response.data.filter(
+            (request) =>
+              request.event.group.leader.toString() == currentUser.id &&
+              request.status == 'pending'
+          )
+        );
+        setOutgoingRequests(
+          response.data.filter(
+            (request) => request.group.leader.toString() == currentUser.id
+          )
+        );
+      });
   };
 
   if (!currentUser) {
@@ -193,12 +206,34 @@ const Profile = () => {
           </Row>
         </div>
         <Spacer x={1} />
-        <Container>
-          <Text h2>Forespørsler</Text>
-          {requests.map((request) => (
-            <Request key={request._id} event={request.event}></Request>
-          ))}
-        </Container>
+        <Row>
+          <Container>
+            <Text h2>Ubesvarte forespørsler</Text>
+            {incomingRequests.map((request) => {
+              return (
+                <>
+                  <Request
+                    key={request._id}
+                    request={request}
+                    incoming={true}
+                  />
+                  <Spacer x={1} />
+                </>
+              );
+            })}
+          </Container>
+          <Container>
+            <Text h2>Status på utgående forespørsler</Text>
+            {outgoingRequests.map((request) => {
+              return (
+                <>
+                  <Request key={request._id} request={request} />
+                  <Spacer x={1} />
+                </>
+              );
+            })}
+          </Container>
+        </Row>
       </div>
 
       {showEditProfile && <EditProfile />}

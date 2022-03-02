@@ -1,16 +1,70 @@
-import { Text, Card } from '@nextui-org/react';
+import { Text, Card, Button, Row } from '@nextui-org/react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+
+const handleAccept = (request) => async () => {
+  try {
+    await axios.put('http://localhost:8000/request/' + request._id, {
+      status: 'accepted',
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const Request = (props) => {
   return (
     <Card>
-      <Text h1>{props.event}</Text>
+      <Card.Header>
+        <Row justify="space-between">
+          <Text h2>{props.request.event.title}</Text>
+          <Text>Arrangert av {props.request.event.group.name}</Text>
+        </Row>
+      </Card.Header>
+      <Card.Footer>
+        <Row justify="space-between">
+          <Text>Forespørsel fra {props.request.group.name}</Text>
+          {props.incoming ? (
+            <Row justify="flex-end">
+              <Button
+                flat
+                auto
+                rounded
+                color="success"
+                onClick={handleAccept(props.request)}
+              >
+                Godkjenn
+              </Button>
+            </Row>
+          ) : (
+            <Text
+              color={
+                {
+                  accepted: 'success',
+                  pending: 'warning',
+                  declined: 'error',
+                }[props.request.status]
+              }
+            >
+              Status:{' '}
+              {
+                {
+                  accepted: 'Akseptert',
+                  pending: 'Ikke besvart',
+                  declined: 'Avvist',
+                }[props.request.status]
+              }
+            </Text>
+          )}
+        </Row>
+      </Card.Footer>
     </Card>
   );
 };
 
 Request.propTypes = {
-  event: PropTypes.string.isRequired,
+  request: PropTypes.object.isRequired,
+  incoming: PropTypes.bool,
 };
 
 export default Request;

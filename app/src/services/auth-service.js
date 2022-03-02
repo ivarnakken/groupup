@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const register = async (username, password) => {
+const register = async (username, password, birthdate) => {
   try {
     await axios.post(`http://localhost:8000/auth/signup/`, {
       username,
       password,
+      birthdate,
     });
   } catch (err) {
     console.error(err);

@@ -9,10 +9,12 @@ const exampleUsers = [
   {
     username: 'groupie',
     password: 'secret',
+    birthdate: new Date('12-12-2000'),
   },
   {
     username: 'groupette',
     password: 'secret',
+    birthdate: new Date('12-12-2000'),
   },
 ];
 
@@ -59,6 +61,7 @@ describe('the user route', () => {
       username: 'grupert',
       password: 'secret',
       roles: ['user'],
+      birthdate: new Date('12-12-2000'),
     };
     await request
       .post('/auth/signup')

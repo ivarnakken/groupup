@@ -15,6 +15,7 @@ router.post(
     const user = new User({
       username: req.body.username,
       password: bcrypt.hashSync(req.body.password, 8),
+      birthdate: req.body.birthdate,
     });
     user.save((err, user) => {
       if (err) {
@@ -99,6 +100,8 @@ router.post('/signin', async (req, res) => {
       res.status(200).send({
         id: user._id,
         username: user.username,
+        location: user.location,
+        image: user.image,
         roles: authorities,
         accessToken: token,
       });

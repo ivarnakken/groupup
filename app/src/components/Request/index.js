@@ -15,34 +15,56 @@ const handleAccept = (request) => async () => {
 const Request = (props) => {
   return (
     <Card>
-      <Text h2>{props.request.event.title}</Text>
-      <Text>{props.request.group.name}</Text>
-      <Row justify="flex-end">
-        <Button
-          flat
-          auto
-          rounded
-          color="success"
-          onClick={handleAccept(props.request)}
-        >
-          Godkjenn
-        </Button>
-        {/* <Button
-          flat
-          auto
-          rounded
-          color="error"
-          onClick={() => console.log('HI')}
-        >
-          Avslå
-        </Button> */}
-      </Row>
+      <Card.Header>
+        <Row justify="space-between">
+          <Text h2>{props.request.event.title}</Text>
+          <Text>Arrangert av {props.request.event.group.name}</Text>
+        </Row>
+      </Card.Header>
+      <Card.Footer>
+        <Row justify="space-between">
+          <Text>Forespørsel fra {props.request.group.name}</Text>
+          {props.incoming ? (
+            <Row justify="flex-end">
+              <Button
+                flat
+                auto
+                rounded
+                color="success"
+                onClick={handleAccept(props.request)}
+              >
+                Godkjenn
+              </Button>
+            </Row>
+          ) : (
+            <Text
+              color={
+                {
+                  accepted: 'success',
+                  pending: 'warning',
+                  declined: 'error',
+                }[props.request.status]
+              }
+            >
+              Status:{' '}
+              {
+                {
+                  accepted: 'Akseptert',
+                  pending: 'Ikke besvart',
+                  declined: 'Avvist',
+                }[props.request.status]
+              }
+            </Text>
+          )}
+        </Row>
+      </Card.Footer>
     </Card>
   );
 };
 
 Request.propTypes = {
   request: PropTypes.object.isRequired,
+  incoming: PropTypes.bool,
 };
 
 export default Request;

@@ -7,14 +7,14 @@ const Request = require('../models/request');
 router.get('/', async (req, res) => {
   try {
     const userId = await jwt.verify(req.query.token, process.env.SECRET).id;
-    const requests = await Request.find({
-      status: req.query.status,
-    })
+    const requests = await Request.find()
       .populate('group')
       .populate({ path: 'event', populate: { path: 'group' } });
     res.send(
       requests.filter(
-        (request) => request.event.group.leader.toString() == userId
+        (request) =>
+          request.event.group.leader.toString() == userId ||
+          request.group.leader.toString() == userId
       )
     );
   } catch (error) {

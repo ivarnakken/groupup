@@ -9,6 +9,7 @@ let request;
 const exampleUser = {
   username: 'ExampleUser',
   password: 'ExamplePassword',
+  birthdate: new Date('12-12-2000'),
 };
 
 const exampleGroup = {

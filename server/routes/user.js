@@ -20,6 +20,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const user = new User({
     username: req.body.username,
+    birthdate: req.body.birthdate,
   });
   user.save();
   res.send(user);

@@ -8,6 +8,7 @@ const RegisterForm = () => {
   const [visible, setVisible] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [birthdate, setBirthdate] = useState(Date.now());
 
   const dispatch = useDispatch();
 
@@ -17,7 +18,7 @@ const RegisterForm = () => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    dispatch(register(username, password))
+    dispatch(register(username, password, birthdate))
       .then(() => {
         window.location.reload();
       })
@@ -61,6 +62,15 @@ const RegisterForm = () => {
             bordered
             color="primary"
             placeholder="Passord"
+          />
+          <Input
+            type="date"
+            label="Fødselsdag"
+            name="birthdate"
+            value={birthdate}
+            onChange={(e) => setBirthdate(e.target.value)}
+            underlined
+            required
           />
           <Row>
             <Button

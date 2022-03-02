@@ -22,14 +22,14 @@ const EventList = () => {
   };
 
   return (
-    <>
-      <div className="eventList">
-        <div className="header">
-          <Text h1 size={40} color="primary" weight="bold">
-            Arrangementer
-          </Text>
-          <EventFilter allEvents={allEvents} setOutEvents={setOutEvents} />
-        </div>
+    <div className="eventList">
+      <div className="header">
+        <Text h1 size={40} color="primary" weight="bold">
+          Arrangementer
+        </Text>
+        <EventFilter allEvents={allEvents} setOutEvents={setOutEvents} />
+      </div>
+      <div className="list">
         {outEvents.map((event) => {
           return (
             <Event
@@ -48,9 +48,11 @@ const EventList = () => {
         })}
       </div>
       <Link to="create" className="createBtn">
-        <div className="plusIcon">+</div>
+        <div className="plusIcon">
+          <box-icon name="plus" color="white" size="lg" />
+        </div>
       </Link>
-    </>
+    </div>
   );
 };
 

@@ -94,10 +94,11 @@ const EventForm = () => {
         resolve(filterUsers(inputValue));
       }, 500)
     );
+
   return (
-    <div className="content">
+    <div className="eventForm">
       <div className="header">
-        <Text h1 size={40} color="primary" weight="bold" className="header">
+        <Text h1 size={40} color="primary" weight="bold">
           Opprett arrangement
         </Text>
       </div>

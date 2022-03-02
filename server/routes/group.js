@@ -5,8 +5,14 @@ const parser = require('../middleware/cloudinary.config');
 const Group = require('../models/group');
 
 router.get('/', async (req, res) => {
-  const groups = await Group.find();
-  res.send(groups);
+  if (req.query.user) {
+    // We're looking for groups where req.body.user is leader
+    const groups = await Group.find({ leader: req.query.user });
+    res.status(200).send(groups);
+  } else {
+    const groups = await Group.find();
+    res.status(200).send(groups);
+  }
 });
 
 router.post('/', parser.single('image'), async (req, res) => {

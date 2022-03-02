@@ -1,0 +1,11 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.App {
+  min-height: 100%;
+  position: relative;
+}

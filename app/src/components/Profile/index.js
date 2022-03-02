@@ -3,7 +3,6 @@ import {
   Card,
   Row,
   Col,
-  Grid,
   Button,
   Spacer,
   Container,
@@ -51,160 +50,135 @@ const Profile = () => {
   }
 
   return (
-    <>
-      <div className="content">
-        <Text
-          h1
-          size={40}
-          css={{
-            textGradient: '45deg, $blue500 -20%, $pink500 50%',
-          }}
-          weight="bold"
-          className="header"
-        >
-          Min side
-        </Text>
-        <div>
-          <Text size={15} className="header">
-            Her kan du administere profilen din og få oversikt over dine grupper
-          </Text>
-        </div>
-
-        <div id="profileElements">
-          <Row>
-            <Spacer x={1} />
-            <Grid xs={12} sm={5}>
-              <Card cover css={{ w: '100%' }}>
-                <Card.Header
-                  blur
-                  css={{
-                    position: 'absolute',
-                    bgBlur: '#FFFFFF',
-                    borderTop:
-                      '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-                    zIndex: 1,
-                    top: 0,
-                  }}
-                >
-                  <Col>
-                    <Text h3 color="black" css={{ textAlign: 'center' }}>
-                      <strong>{currentUser.username}</strong>
+    <div className="profile">
+      <Text h1 size={40} weight="bold" color="primary" className="header">
+        Min side
+      </Text>
+      <Text size={15} className="describingText">
+        Her kan du administere profilen din og få oversikt over dine grupper
+      </Text>
+      <Spacer y={1} />
+      <Row>
+        <Spacer x={1} />
+        <Card cover css={{ w: '100%' }}>
+          <Card.Header
+            blur
+            css={{
+              position: 'absolute',
+              bgBlur: '#FFFFFF',
+              borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+              zIndex: 1,
+              top: 0,
+            }}
+          >
+            <Col>
+              <Text h3 color="black" css={{ textAlign: 'center' }}>
+                <strong>{currentUser.username}</strong>
+              </Text>
+            </Col>
+          </Card.Header>
+          <Card.Body>
+            <Card.Image src={currentUser.image} width="100%" height={400} />
+          </Card.Body>
+          <Card.Footer
+            blur
+            css={{
+              position: 'absolute',
+              bgBlur: '#FFFFFF',
+              borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+              bottom: 0,
+              zIndex: 1,
+            }}
+          >
+            <Row>
+              <Col>
+                <Text color="#000" size={12}>
+                  {currentUser.location}
+                </Text>
+              </Col>
+              <Col>
+                <Row justify="flex-end">
+                  <Button
+                    flat
+                    auto
+                    rounded
+                    color="secondary"
+                    onClick={() => setShowEditProfile(!showEditProfile)}
+                  >
+                    <Text
+                      css={{ color: 'inherit' }}
+                      size={12}
+                      weight="bold"
+                      transform="uppercase"
+                    >
+                      Rediger profil
                     </Text>
-                  </Col>
-                </Card.Header>
-                <Card.Body>
-                  <Card.Image
-                    src={currentUser.image}
-                    width="100%"
-                    height={400}
-                  />
-                </Card.Body>
-                <Card.Footer
-                  blur
-                  css={{
-                    position: 'absolute',
-                    bgBlur: '#FFFFFF',
-                    borderTop:
-                      '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-                    bottom: 0,
-                    zIndex: 1,
-                  }}
-                >
-                  <Row>
-                    <Col>
-                      <Text color="#000" size={12}>
-                        {currentUser.location}
-                      </Text>
-                    </Col>
-                    <Col>
-                      <Row justify="flex-end">
-                        <Button
-                          flat
-                          auto
-                          rounded
-                          color="secondary"
-                          onClick={() => setShowEditProfile(!showEditProfile)}
-                        >
-                          <Text
-                            css={{ color: 'inherit' }}
-                            size={12}
-                            weight="bold"
-                            transform="uppercase"
-                          >
-                            Rediger profil
-                          </Text>
-                        </Button>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Card.Footer>
-              </Card>
-              <Spacer x={1} />
+                  </Button>
+                </Row>
+              </Col>
+            </Row>
+          </Card.Footer>
+        </Card>
+        <Spacer x={1} />
 
-              <Card cover css={{ w: '100%' }}>
-                <Card.Header
-                  blur
-                  css={{
-                    position: 'absolute',
-                    bgBlur: '#FFFFFF',
-                    borderTop:
-                      '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-                    zIndex: 1,
-                    top: 0,
-                  }}
-                >
-                  <Col>
-                    <Text h3 color="black" css={{ textAlign: 'center' }}>
-                      Grupper jeg administrerer
+        <Card cover css={{ w: '100%' }}>
+          <Card.Header
+            blur
+            css={{
+              position: 'absolute',
+              bgBlur: '#FFFFFF',
+              borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+              zIndex: 1,
+              top: 0,
+            }}
+          >
+            <Col>
+              <Text h3 color="black" css={{ textAlign: 'center' }}>
+                Grupper jeg administrerer
+              </Text>
+            </Col>
+          </Card.Header>
+          <Card.Body>
+            <Card.Image
+              src="./tur.jpg"
+              height={400}
+              width="100%"
+              alt="Card example background"
+            />
+          </Card.Body>
+          <Card.Footer
+            blur
+            css={{
+              position: 'absolute',
+              bgBlur: '#FFFFFF',
+              borderTop: '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
+              bottom: 0,
+              zIndex: 1,
+            }}
+          >
+            <Row>
+              <Col>
+                <Text color="#000" size={12}>
+                  Her finner du oversikt over gruppene du administrerer
+                </Text>
+              </Col>
+              <Col>
+                <Row justify="flex-end">
+                  <Button flat auto rounded color="secondary">
+                    <Text
+                      css={{ color: 'inherit' }}
+                      size={12}
+                      weight="bold"
+                      transform="uppercase"
+                    >
+                      Vis grupper
                     </Text>
-                  </Col>
-                </Card.Header>
-                <Card.Body>
-                  <Card.Image
-                    src="./tur.jpg"
-                    height={400}
-                    width="100%"
-                    alt="Card example background"
-                  />
-                </Card.Body>
-                <Card.Footer
-                  blur
-                  css={{
-                    position: 'absolute',
-                    bgBlur: '#FFFFFF',
-                    borderTop:
-                      '$borderWeights$light solid rgba(255, 255, 255, 0.2)',
-                    bottom: 0,
-                    zIndex: 1,
-                  }}
-                >
-                  <Row>
-                    <Col>
-                      <Text color="#000" size={12}>
-                        Her finner du oversikt over gruppene du administrerer
-                      </Text>
-                    </Col>
-                    <Col>
-                      <Row justify="flex-end">
-                        <Button flat auto rounded color="secondary">
-                          <Text
-                            css={{ color: 'inherit' }}
-                            size={12}
-                            weight="bold"
-                            transform="uppercase"
-                          >
-                            Vis grupper
-                          </Text>
-                        </Button>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Card.Footer>
-              </Card>
-            </Grid>
-            <Spacer x={1} />
-          </Row>
-        </div>
+                  </Button>
+                </Row>
+              </Col>
+            </Row>
+          </Card.Footer>
+        </Card>
         <Spacer x={1} />
         <Row>
           <Container>
@@ -234,10 +208,10 @@ const Profile = () => {
             })}
           </Container>
         </Row>
-      </div>
+      </Row>
 
       {showEditProfile && <EditProfile />}
-    </>
+    </div>
   );
 };
 

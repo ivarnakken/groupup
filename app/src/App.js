@@ -1,8 +1,10 @@
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store.js';
 import { createTheme, NextUIProvider } from '@nextui-org/react';
+import './App.css';
 
 const theme = createTheme({
   type: 'light',
@@ -31,8 +33,9 @@ function App() {
   return (
     <NextUIProvider theme={theme}>
       <Provider store={store}>
-        <div>
+        <div className="App">
           <Navbar />
+          <Footer />
           <Outlet />
         </div>
       </Provider>

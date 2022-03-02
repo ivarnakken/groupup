@@ -8,6 +8,7 @@ const EditProfile = () => {
   const [visible, setVisible] = useState(true);
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   const closeHandler = () => {
     setVisible(false);
   };
@@ -37,7 +38,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div>
+    <>
       <form id="editProfileForm" onSubmit={handleSubmit}>
         <Modal
           closeButton
@@ -95,7 +96,7 @@ const EditProfile = () => {
           </Modal.Body>
         </Modal>
       </form>
-    </div>
+    </>
   );
 };
 

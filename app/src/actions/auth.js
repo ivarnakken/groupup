@@ -7,23 +7,29 @@ import {
 } from './types';
 import AuthService from '../services/auth-service';
 
-export const register = (username, password, birthdate) => (dispatch) => {
-  return AuthService.register(username, password, birthdate).then(
-    () => {
-      dispatch({
-        type: REGISTER_SUCCESS,
-      });
-      return login(username, password)(dispatch);
-    },
-    (err) => {
-      console.error(err);
-      dispatch({
-        type: REGISTER_FAIL,
-      });
-      return Promise.reject();
-    }
-  );
-};
+export const register =
+  (username, password, passwordCopy, birthdate) => (dispatch) => {
+    return AuthService.register(
+      username,
+      password,
+      passwordCopy,
+      birthdate
+    ).then(
+      () => {
+        dispatch({
+          type: REGISTER_SUCCESS,
+        });
+        return login(username, password)(dispatch);
+      },
+      (err) => {
+        console.error(err);
+        dispatch({
+          type: REGISTER_FAIL,
+        });
+        return Promise.reject();
+      }
+    );
+  };
 
 export const login = (username, password) => (dispatch) => {
   return AuthService.login(username, password).then(

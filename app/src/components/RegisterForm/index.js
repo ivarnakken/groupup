@@ -8,6 +8,7 @@ const RegisterForm = () => {
   const [visible, setVisible] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordCopy, setPasswordCopy] = useState('');
   const [birthdate, setBirthdate] = useState(Date.now());
 
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const RegisterForm = () => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    dispatch(register(username, password, birthdate))
+    dispatch(register(username, password, passwordCopy, birthdate))
       .then(() => {
         window.location.reload();
       })
@@ -62,6 +63,16 @@ const RegisterForm = () => {
             bordered
             color="primary"
             placeholder="Passord"
+          />
+          <Input.Password
+            form="login"
+            name="password"
+            value={passwordCopy}
+            onChange={(e) => setPasswordCopy(e.target.value)}
+            clearable
+            bordered
+            color="primary"
+            placeholder="Gjenta passord"
           />
           <Input
             type="date"

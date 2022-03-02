@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import LoginForm from '../LoginForm';
 import RegisterForm from '../RegisterForm';
-import { Button } from '@nextui-org/react';
+import { Button, Spacer } from '@nextui-org/react';
 import './style.css';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../actions/auth';
@@ -31,8 +31,17 @@ const Navbar = () => {
           {currentUser ? (
             <>
               <NavLink to="/profile">{currentUser.username}</NavLink>
-              <Button auto flat rounded color="error" onClick={_logout}>
-                Logg ut
+              <Button
+                auto
+                flat
+                rounded
+                color="error"
+                onClick={_logout}
+                className="logoutBtn"
+              >
+                <box-icon name="log-out" color="#f21361"></box-icon>
+                <Spacer x={0.5} />
+                <span>Logg ut</span>
               </Button>
             </>
           ) : (
@@ -44,7 +53,9 @@ const Navbar = () => {
                 color="primary"
                 auto
               >
-                Logg inn
+                <box-icon name="log-in" color="#206c7a"></box-icon>
+                <Spacer x={0.5} />
+                <span>Logg inn</span>
               </Button>
               <Button
                 onClick={() => setShowRegisterForm(!showRegisterForm)}

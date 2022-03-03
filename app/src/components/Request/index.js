@@ -12,6 +12,16 @@ const handleAccept = (request) => async () => {
   }
 };
 
+const handleDecline = (request) => async () => {
+  try {
+    await axios.put('http://localhost:8000/request/' + request._id, {
+      status: 'declined',
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const Request = (props) => {
   return (
     <Card>
@@ -35,6 +45,15 @@ const Request = (props) => {
               >
                 Godkjenn
               </Button>
+              <Button
+                flat
+                auto
+                rounded
+                color="error"
+                onClick={handleDecline(props.request)}
+              >
+                Avslå
+              </Button>
             </Row>
           ) : (
             <Text
@@ -51,7 +70,7 @@ const Request = (props) => {
                 {
                   accepted: 'Akseptert',
                   pending: 'Ikke besvart',
-                  declined: 'Avvist',
+                  declined: 'Avslått',
                 }[props.request.status]
               }
             </Text>

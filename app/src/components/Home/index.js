@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './style.css';
 
 const Home = () => {
-  const { user: currentUser } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   return (
     <div className="home">
@@ -27,7 +27,7 @@ const Home = () => {
           <Text h4 color="#00000088" weight="medium" className="comment">
             Stedet der grupper blir kjent.
           </Text>
-          {currentUser ? (
+          {isLoggedIn ? (
             <Link to="events/create">
               <Button rounded color="primary" auto className="homeBtn">
                 Lag arrangement

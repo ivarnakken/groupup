@@ -35,7 +35,7 @@ const Event = (props) => {
   const getGroups = async () => {
     await axios
       .get('http://localhost:8000/group/', {
-        params: { user: currentUser.id },
+        params: { user: currentUser?.id },
       })
       .then((response) => {
         setGroups(response.data);
@@ -75,7 +75,7 @@ const Event = (props) => {
             <box-icon name="map"></box-icon>
             <Text>{props.location}</Text>
           </Row>
-          {currentUser ? (
+          {currentUser && (
             <form
               onSubmit={() => sendRequest(event, props.id)}
               className="requestForm"
@@ -104,7 +104,7 @@ const Event = (props) => {
                 </Text>
               </Button>
             </form>
-          ) : null}
+          )}
         </Modal.Body>
       </Modal>
       <Card cover css={{ bgColor: '$primaryLight' }} className="event">

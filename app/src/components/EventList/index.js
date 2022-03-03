@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Event from '../Event';
 import EventFilter from '../EventFilter';
 import axios from 'axios';
@@ -7,6 +8,8 @@ import './style.css';
 import { Text } from '@nextui-org/react';
 
 const EventList = () => {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
   const [allEvents, setAllEvents] = useState([]);
   const [outEvents, setOutEvents] = useState([]);
 
@@ -15,7 +18,7 @@ const EventList = () => {
   }, []);
 
   const getAllEvents = async () => {
-    await axios.get('http://localhost:8000/event').then((response) => {
+    await axios.get('http://localhost:8000/event/').then((response) => {
       setAllEvents(response.data);
       setOutEvents(response.data);
     });
@@ -47,11 +50,13 @@ const EventList = () => {
           );
         })}
       </div>
-      <Link to="create" className="createBtn">
-        <div className="plusIcon">
-          <box-icon name="plus" color="white" size="lg" />
-        </div>
-      </Link>
+      {isLoggedIn && (
+        <Link to="create" className="createBtn">
+          <div className="plusIcon">
+            <box-icon name="plus" color="white" size="lg" />
+          </div>
+        </Link>
+      )}
     </div>
   );
 };

@@ -1,0 +1,18 @@
+.groupList {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding-bottom: 300px; /* The height of the footer + space */
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+}

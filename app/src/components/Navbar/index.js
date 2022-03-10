@@ -28,6 +28,7 @@ const Navbar = () => {
           {currentUser && <NavLink to="/group">Opprett gruppe</NavLink>}
 
           <NavLink to="/events">Arrangementer</NavLink>
+          <NavLink to="/groups">Grupper</NavLink>
           {currentUser ? (
             <>
               <NavLink to="/profile">{currentUser.username}</NavLink>

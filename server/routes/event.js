@@ -17,6 +17,7 @@ router.post('/', parser.single('image'), async (req, res) => {
     description: req.body.description,
     tags: JSON.parse(req.body.tags),
     group: req.body.group,
+    invitedGroups: JSON.parse(req.body.invitedGroups),
   };
   if (req.file) {
     eventData.image = req.file.path;

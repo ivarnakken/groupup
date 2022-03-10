@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 
 const Request = require('../models/request');
+const Event = require('../models/event');
 
 router.get('/', async (req, res) => {
   try {
@@ -24,6 +25,10 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  const event = await Event.findById(req.body.event);
+  if (event.invitedGroups.includes(req.body.group)) {
+    req.body.status = 'accepted';
+  }
   const request = new Request(req.body);
   request.save();
   res.send(request);

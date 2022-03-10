@@ -1,9 +1,10 @@
-import { Text, Input, Button } from '@nextui-org/react';
+import { Text, Input, Button, Spacer } from '@nextui-org/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AsyncSelect from 'react-select/async';
 import ImageUploadButton from '../ImageUploadButton';
+import { Checkbox, Textarea } from '@nextui-org/react';
 import './style.css';
 
 const GroupForm = () => {
@@ -32,6 +33,7 @@ const GroupForm = () => {
     try {
       const formData = new FormData();
       formData.append('name', formValue.name);
+      formData.append('description', formValue.description);
       formData.append('leader', currentUser.id);
       formData.append('members', JSON.stringify(members));
       formData.append('image', formValue.image);
@@ -75,6 +77,8 @@ const GroupForm = () => {
         Opprett gruppe
       </Text>
 
+      <Spacer/>
+
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <Input
@@ -104,6 +108,38 @@ const GroupForm = () => {
             Opprett
           </Button>
         </div>
+
+        <Spacer/>
+        <Spacer/>
+        <Spacer/>
+
+        <div>
+          <Checkbox checked={false} size="sm">
+              Gullgruppe
+          </Checkbox>
+          <Spacer/>
+          <Text size={11}>
+          Hvis du ønkser å være en gullgruppe vil andre grupper få opp forespørselen din om å bli med på arrangementet du ønsker.
+              Er du en vanlig gruppe vil forespørselen være anonym.
+              Du vil fortsatt kunne være en vanlig gruppe ved å være en gullgruppe!
+          </Text>
+          <Spacer/>
+
+          <Spacer/>
+            <Textarea
+          name="description"
+          value={formValue.description}
+          onChange={handleChange}
+          labelPlaceholder="Gruppebeskrivelse"
+          helperText="Husk å legg til kontaktinformasjon"
+          className="textarea"
+          bordered
+          required
+        />
+            <Spacer/>
+        </div>
+        <Spacer/>
+        <img className="skygold" src="/nicegold2.png" height={300} width={450}/>
       </form>
     </div>
   );

@@ -14,6 +14,7 @@ const EventForm = () => {
     description: '',
     tags: [],
     image: '',
+    invitedGroups: [],
   });
 
   const [tagOptions, setTagOptions] = useState([]);
@@ -35,10 +36,18 @@ const EventForm = () => {
     });
   };
 
-  const handleSelectChange = (selectedOptions) => {
+  const handleTagSelectChange = (selectedOptions) => {
     setFormValue({
       ...formValue,
       tags: selectedOptions.map((option) => option.value),
+    });
+  };
+
+  const handleInviteSelectChange = (selectedOptions) => {
+    console.log(selectedOptions);
+    setFormValue({
+      ...formValue,
+      invitedGroups: selectedOptions.map((option) => option._id),
     });
   };
 
@@ -61,6 +70,8 @@ const EventForm = () => {
       formData.append('tags', JSON.stringify(formValue.tags));
       formData.append('image', formValue.image);
       formData.append('group', group._id);
+      console.log(formValue.invitedGroups);
+      formData.append('invitedGroups', JSON.stringify(formValue.invitedGroups));
 
       await axios.post('http://localhost:8000/event/', formData);
     } catch (err) {
@@ -137,7 +148,15 @@ const EventForm = () => {
             placeholder="Emneknagger"
             options={tagOptions}
             isMulti
-            onChange={handleSelectChange}
+            onChange={handleTagSelectChange}
+          />
+          <Select
+            placeholder="Inviterbare"
+            options={groups}
+            getOptionLabel={(group) => group.name}
+            getOptionValue={(group) => group._id}
+            isMulti
+            onChange={handleInviteSelectChange}
           />
           <AsyncSelect
             placeholder="Gruppe"

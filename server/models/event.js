@@ -12,6 +12,11 @@ const EventSchema = new mongoose.Schema({
     ref: 'Group',
     required: true,
   },
+  invitedGroups: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Group',
+    required: false,
+  },
 });
 
 module.exports = mongoose.model('Event', EventSchema);

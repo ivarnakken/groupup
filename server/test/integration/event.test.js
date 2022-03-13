@@ -22,14 +22,16 @@ const exampleEvents = [
     location: 'Stranda',
     date: new Date('2022-02-25T00:00:00.000Z'),
     description: 'Alle må joine da! 😁',
-    tags: '[]',
+    tags: [],
+    invitedGroups: [],
   },
   {
     title: 'Kino med gutta',
     location: 'Kinoen',
     date: new Date('2022-03-04T00:00:00.000Z'),
     description: 'Gutta ONLY 😎🎬',
-    tags: "['kino']",
+    tags: ['kino'],
+    invitedGroups: [],
   },
 ];
 
@@ -46,7 +48,6 @@ beforeEach(async () => {
   //Make an initial user
   const user = new User(exampleUser);
   await user.save();
-  console.log(user);
   exampleGroup.leader = user._id;
   const group = new Group(exampleGroup);
   await group.save();
@@ -98,6 +99,7 @@ describe('the event route', () => {
       date: new Date('2022-04-22T00:00:00.000Z'),
       description: 'Ta med skjøteledning selv. Mamma står for pizzaboller.',
       tags: '[]',
+      invitedGroups: '[]',
     };
     data.group = await Group.findOne();
     await request

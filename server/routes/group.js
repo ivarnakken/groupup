@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     const groups = await Group.find({ leader: req.query.user });
     res.status(200).send(groups);
   } else {
-    const groups = await Group.find();
+    const groups = await Group.find().populate('leader');
     res.status(200).send(groups);
   }
 });

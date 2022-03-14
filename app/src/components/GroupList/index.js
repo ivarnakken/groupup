@@ -3,10 +3,12 @@ import Group from '../Group';
 import axios from 'axios';
 import './style.css';
 import { Text } from '@nextui-org/react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const GroupList = () => {
-  const [setAllGroups] = useState([]);
-  const [outGroups, setOutGroups] = useState([]);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const [allGroups, setAllGroups] = useState([]);
 
   useEffect(() => {
     getAllGroups();
@@ -15,7 +17,6 @@ const GroupList = () => {
   const getAllGroups = async () => {
     await axios.get('http://localhost:8000/group/').then((response) => {
       setAllGroups(response.data);
-      setOutGroups(response.data);
     });
   };
 
@@ -27,7 +28,7 @@ const GroupList = () => {
         </Text>
       </div>
       <div className="list">
-        {outGroups.map((group) => {
+        {allGroups.map((group) => {
           return (
             <Group
               key={group._id}
@@ -41,6 +42,13 @@ const GroupList = () => {
           );
         })}
       </div>
+      {isLoggedIn && (
+        <Link to="create" className="createBtn">
+          <div className="plusIcon">
+            <box-icon name="plus" color="white" size="lg" />
+          </div>
+        </Link>
+      )}
     </div>
   );
 };

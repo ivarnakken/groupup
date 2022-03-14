@@ -25,8 +25,6 @@ const Navbar = () => {
           <img src="/logo.png" height={20} width={125} />
         </NavLink>
         <div className="links">
-          {currentUser && <NavLink to="/group">Opprett gruppe</NavLink>}
-
           <NavLink to="/events">Arrangementer</NavLink>
           <NavLink to="/groups">Grupper</NavLink>
           {currentUser ? (

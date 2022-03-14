@@ -16,7 +16,7 @@ render(
         <Route path="/" element={<Home />} />
         <Route path="events" element={<EventList />} />
         <Route path="events/create" element={<EventForm />} />
-        <Route path="group" element={<GroupForm />} />
+        <Route path="groups/create" element={<GroupForm />} />
         <Route path="profile" element={<Profile />} />
         <Route path="groups" element={<GroupList />} />
         <Route

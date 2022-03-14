@@ -1,14 +1,69 @@
 import PropTypes from 'prop-types';
 import { useModal } from '@nextui-org/react';
-import { Card, Text, Col, Row, Button, Modal } from '@nextui-org/react';
+import {
+  Card,
+  Text,
+  Col,
+  Row,
+  Button,
+  Modal,
+  Grid,
+  Avatar,
+} from '@nextui-org/react';
+import { useEffect, useState } from 'react';
 import './style.css';
+import axios from 'axios';
 
 const Group = (props) => {
   const { setVisible, bindings } = useModal();
+  const [allMembers, setAllMembers] = useState([]);
+
+  useEffect(() => {
+    getAllMembers();
+  }, []);
+
+  const getAllMembers = async () => {
+    await axios.get('http://localhost:8000/group/members/').then((response) => {
+      setAllMembers(response.data);
+    });
+  };
 
   return (
     <>
-      <Modal {...bindings}></Modal>
+      <Modal {...bindings}>
+        <Modal.Header>
+          <Text h3 color="primary">
+            {props.name}
+          </Text>
+        </Modal.Header>
+        <Modal.Body>
+          <Grid.Container gap={2}>
+            <Grid>
+              <Avatar
+                size="lg"
+                src={props.leader.image}
+                zoomed
+                color="primary"
+                bordered
+              />
+            </Grid>
+
+            <div className="list">
+              {allMembers.map((members) => {
+                return (
+                  <Avatar
+                    size="lg"
+                    src={members.image}
+                    zoomed
+                    color="primary"
+                    bordered
+                  />
+                );
+              })}
+            </div>
+          </Grid.Container>
+        </Modal.Body>
+      </Modal>
 
       <Card cover css={{ bgColor: '$primaryLight' }} className="event">
         <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
@@ -28,7 +83,7 @@ const Group = (props) => {
                 transform="uppercase"
                 color="#ffffffAA"
               >
-                {props.leader}
+                {props.leader.username}
               </Text>
             </Row>
           </Col>

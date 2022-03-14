@@ -1,10 +1,16 @@
-import { Text, Input, Button, Spacer } from '@nextui-org/react';
+import {
+  Text,
+  Input,
+  Button,
+  Spacer,
+  Checkbox,
+  Textarea,
+} from '@nextui-org/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AsyncSelect from 'react-select/async';
 import ImageUploadButton from '../ImageUploadButton';
-import { Checkbox, Textarea } from '@nextui-org/react';
 import './style.css';
 
 const GroupForm = () => {
@@ -13,6 +19,7 @@ const GroupForm = () => {
   const [formValue, setFormValue] = useState({
     name: '',
     image: '',
+    gold: false,
   });
 
   const handleChange = (event) => {
@@ -27,6 +34,14 @@ const GroupForm = () => {
       image: event.target.files[0],
     });
   };
+  const handleCheckbox = (event) => {
+    console.log(event);
+    setFormValue({
+      ...formValue,
+      gold: event.target.checked,
+    });
+    console.log(formValue);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +49,7 @@ const GroupForm = () => {
       const formData = new FormData();
       formData.append('name', formValue.name);
       formData.append('description', formValue.description);
+      formData.append('gold', formValue.gold);
       formData.append('leader', currentUser.id);
       formData.append('members', JSON.stringify(members));
       formData.append('image', formValue.image);
@@ -77,7 +93,7 @@ const GroupForm = () => {
         Opprett gruppe
       </Text>
 
-      <Spacer/>
+      <Spacer />
 
       <form onSubmit={handleSubmit}>
         <div className="inputs">
@@ -109,37 +125,49 @@ const GroupForm = () => {
           </Button>
         </div>
 
-        <Spacer/>
-        <Spacer/>
-        <Spacer/>
+        <Spacer />
+        <Spacer />
+        <Spacer />
 
         <div>
-          <Checkbox checked={false} size="sm">
-              Gullgruppe
+          <Checkbox
+            name="gold"
+            checked={false}
+            size="sm"
+            value={formValue.gold}
+            onChange={handleCheckbox}
+          >
+            Gullgruppe
           </Checkbox>
-          <Spacer/>
+          <Spacer />
           <Text size={11}>
-          Hvis du ønkser å være en gullgruppe vil andre grupper få opp forespørselen din om å bli med på arrangementet du ønsker.
-              Er du en vanlig gruppe vil forespørselen være anonym.
-              Du vil fortsatt kunne være en vanlig gruppe ved å være en gullgruppe!
+            Hvis du ønkser å være en gullgruppe vil andre grupper få opp
+            forespørselen din om å bli med på arrangementet du ønsker. Er du en
+            vanlig gruppe vil forespørselen være anonym. Du vil fortsatt kunne
+            være en vanlig gruppe ved å være en gullgruppe!
           </Text>
-          <Spacer/>
+          <Spacer />
 
-          <Spacer/>
-            <Textarea
-          name="description"
-          value={formValue.description}
-          onChange={handleChange}
-          labelPlaceholder="Gruppebeskrivelse"
-          helperText="Husk å legg til kontaktinformasjon"
-          className="textarea"
-          bordered
-          required
-        />
-            <Spacer/>
+          <Spacer />
+          <Textarea
+            name="description"
+            value={formValue.description}
+            onChange={handleChange}
+            labelPlaceholder="Gruppebeskrivelse"
+            helperText="Husk å legg til kontaktinformasjon"
+            className="textarea"
+            bordered
+            required
+          />
+          <Spacer />
         </div>
-        <Spacer/>
-        <img className="skygold" src="/nicegold2.png" height={300} width={450}/>
+        <Spacer />
+        <img
+          className="skygold"
+          src="/nicegold2.png"
+          height={300}
+          width={450}
+        />
       </form>
     </div>
   );

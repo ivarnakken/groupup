@@ -14,6 +14,8 @@ const GroupSchema = new mongoose.Schema({
     },
   ],
   image: { type: String },
+  description: { type: String, default: '' },
+  gold: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model('Group', GroupSchema);

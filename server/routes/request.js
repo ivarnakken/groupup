@@ -14,7 +14,8 @@ router.get('/', async (req, res) => {
     res.send(
       requests.filter(
         (request) =>
-          request.event.group.leader.toString() == userId ||
+          (request.group.gold &&
+            request.event.group.leader.toString() == userId) ||
           request.group.leader.toString() == userId
       )
     );

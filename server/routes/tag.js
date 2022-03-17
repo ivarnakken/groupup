@@ -13,8 +13,13 @@ router.post('/', async (req, res) => {
     value: req.body.value,
     label: req.body.label,
   });
-  tag.save();
-  res.send(tag);
+
+  tag.save(function (err, tag) {
+    if (err) {
+      console.log(err);
+      res.send(400, 'Bad Request');
+    } else res.send(tag);
+  });
 });
 
 module.exports = router;

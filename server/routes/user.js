@@ -22,8 +22,15 @@ router.post('/', async (req, res) => {
     username: req.body.username,
     birthdate: req.body.birthdate,
   });
-  user.save();
-  res.send(user);
+
+  user.save(function (err, user) {
+    if (err) {
+      console.log(err);
+      res.send(400, 'Bad Request');
+    } else res.send(user);
+  });
+
+  // user.save();
 });
 
 router.put('/', parser.single('image'), async (req, res) => {

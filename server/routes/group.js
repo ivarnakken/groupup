@@ -26,8 +26,6 @@ router.post('/', parser.single('image'), async (req, res) => {
     groupData.image = req.file.path;
   }
   const group = new Group(groupData);
-  // group.save();
-  // res.send(group);
 
   group.save(function (err, group) {
     if (err) {

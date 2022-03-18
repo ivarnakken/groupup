@@ -26,11 +26,9 @@ router.post('/', async (req, res) => {
   user.save(function (err, user) {
     if (err) {
       console.log(err);
-      res.send(400, 'Bad Request');
+      res.send(400, 'Ugyldig brukernavn');
     } else res.send(user);
   });
-
-  // user.save();
 });
 
 router.put('/', parser.single('image'), async (req, res) => {

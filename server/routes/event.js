@@ -23,8 +23,13 @@ router.post('/', parser.single('image'), async (req, res) => {
     eventData.image = req.file.path;
   }
   const event = new Event(eventData);
-  event.save();
-  res.send(event);
+
+  event.save(function (err, event) {
+    if (err) {
+      console.log(err);
+      res.send(400, 'Bad Request');
+    } else res.send(event);
+  });
 });
 
 module.exports = router;

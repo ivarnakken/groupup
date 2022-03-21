@@ -1,7 +1,7 @@
 .home {
   position: relative;
   max-width: 1200px;
-  height: 100vh;
+
   display: flex;
   margin: 0 auto;
   padding-bottom: 300px; /* The height of the footer + spacing */

@@ -23,7 +23,7 @@ const Home = () => {
           <Text h1 size={60} weight="bold" with="100">
             Velkommen til
           </Text>
-          <img src="/logo.png" height={80} width={700} />
+          <img src="/logo.png" height={80} width={500} />
 
           <Text h4 color="#00000088" weight="medium" className="comment">
             Stedet der grupper blir kjent.
@@ -47,9 +47,8 @@ const Home = () => {
             Registrer deg
           </Button>
         )}
-
-        <Spacer>
-          <Spacer></Spacer>
+        
+        <Spacer y={2}>
         </Spacer>
         <Grid.Container gap={1}>
           <Grid>
@@ -73,87 +72,7 @@ const Home = () => {
 
           <Spacer y={10}></Spacer>
         </Grid.Container>
-
-        <Grid.Container gap={4} justify="center">
-          <Grid lg={11} sm={10}>
-            <Card cover>
-              <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-                <Col>
-                  <Text
-                    size={12}
-                    weight="bold"
-                    transform="uppercase"
-                    color="#primary"
-                  >
-                    Hyttetur?
-                  </Text>
-                </Col>
-              </Card.Header>
-              <Card.Image
-                src="hyttetur.jpg"
-                height={400}
-                width="100%"
-                alt="Card image background"
-              />
-            </Card>
-          </Grid>
-          </Grid.Container>
-
-          <Grid.Container gap={4} justify="center">
-          <Grid lg={11} sm={10}>
-            <Card cover>
-              <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-                <Col>
-                  <Text
-                    size={12}
-                    weight="bold"
-                    transform="uppercase"
-                    color="#primary"
-                  >
-                    Hyttetur?
-                  </Text>
-                </Col>
-              </Card.Header>
-              <Card.Image
-                src="hyttetur.jpg"
-                height={400}
-                width="100%"
-                alt="Card image background"
-              />
-            </Card>
-          </Grid>
-          </Grid.Container>
-
-          <Grid.Container gap={4} justify="center">
-          <Grid lg={11} sm={10}>
-            <Card cover>
-              <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
-                <Col>
-                  <Text
-                    size={12}
-                    weight="bold"
-                    transform="uppercase"
-                    color="#primary"
-                  >
-                    Hyttetur?
-                  </Text>
-                </Col>
-              </Card.Header>
-              <Card.Image
-                src="hyttetur.jpg"
-                height={400}
-                width="100%"
-                alt="Card image background"
-              />
-            </Card>
-          </Grid>
-          </Grid.Container>
-        
-
-
-        <Spacer y={10}></Spacer>
-      </div>
-      <Col className="groouppiture">
+        <Col className="groouppiture">
         <Spacer y={7}></Spacer>
 
         <Grid.Container gap={4} justify="center">
@@ -181,13 +100,23 @@ const Home = () => {
             </Card>
           </Grid>
         </Grid.Container>
+        </Col>
 
-        <Spacer y={5}></Spacer>
 
-        <Row>
 
-    <Grid.Container gap={4} justify="center">
-        <Grid sm={12} md={10} justify="left">
+        <Spacer y={10}></Spacer>
+
+      <Grid.Container>
+
+
+        <Spacer y={10}></Spacer>
+
+
+
+
+          <Grid.Container gap={4} justify="center">
+            <Row>
+            <Grid sm={12} md={10} justify="left">
               <Card css={{ mw: '330px' }}>
                 <Card.Header>
                   <Text b>MØTEPLASS</Text>
@@ -213,12 +142,12 @@ const Home = () => {
                 <Divider />
                 <Card.Body css={{ py: '$10' }}>
                   <Text>
-                  Brukere kan opprette grupper, hvor de kan legge til vennene sine. En gruppe
-            består av én eller flere personlige profiler.             
-            Gruppene må matche med hverandre for at et møte skal skje, og kan
-            kommunisere med hverandre.
-            Etter hvert som det avtales møter, kan gruppene kunne se en
-            liste over matcher med andre grupper.
+                    Brukere kan opprette grupper, hvor de kan legge til vennene
+                    sine. En gruppe består av én eller flere personlige
+                    profiler. Gruppene må matche med hverandre for at et møte
+                    skal skje, og kan kommunisere med hverandre. Etter hvert som
+                    det avtales møter, kan gruppene kunne se en liste over
+                    matcher med andre grupper.
                   </Text>
                 </Card.Body>
                 <Divider />
@@ -236,10 +165,11 @@ const Home = () => {
                 <Divider />
                 <Card.Body css={{ py: '$10' }}>
                   <Text>
-                  En gruppe kan legge til sine interesser, ha en beskrivelse, antall i
-            gruppa, aldersspenn, bilde og dato for ønsket aktivitet.
-            Grupper kan se alle andre grupper, og filtrere dem på interesser,
-            lokasjon, alder, gruppestørrelse og dato før ønsket møte.
+                    En gruppe kan legge til sine interesser, ha en beskrivelse,
+                    antall i gruppa, aldersspenn, bilde og dato for ønsket
+                    aktivitet. Grupper kan se alle andre grupper, og filtrere
+                    dem på interesser, lokasjon, alder, gruppestørrelse og dato
+                    før ønsket møte.
                   </Text>
                 </Card.Body>
                 <Divider />
@@ -247,7 +177,7 @@ const Home = () => {
               </Card>
             </Grid>
             <Spacer></Spacer>
-            <Grid sM={12} md={10} justify="left">
+            <Grid sm={12} md={10} justify="left">
               <Card css={{ mw: '330px' }}>
                 <Card.Header>
                   <Text b>HYGGELIGE OPPLEVELSER</Text>
@@ -255,14 +185,13 @@ const Home = () => {
                 <Divider />
                 <Card.Body css={{ py: '$10' }}>
                   <Text>
-                  For å sikre hyggelige opplevelser på plattformen kan grupper gi en
-            review til hverandre etter møtedato.
-            Videre, for å sikre seriøse brukere, må en logge seg inn med
-            passord på egen bruker for å delta på forumet.
-            Brukere kan rapportere andre brukere som bryter
-            retningslinjene.
-            Dersom sidens administrator oppdager brudd eller svindel, kan
-            administrator fjerne upassende grupper og slette brukere.
+                    For å sikre hyggelige opplevelser på plattformen kan grupper
+                    gi en review til hverandre etter møtedato. Videre, for å
+                    sikre seriøse brukere, må en logge seg inn med passord på
+                    egen bruker for å delta på forumet. Brukere kan rapportere
+                    andre brukere som bryter retningslinjene. Dersom sidens
+                    administrator oppdager brudd eller svindel, kan
+                    administrator fjerne upassende grupper og slette brukere.
                   </Text>
                 </Card.Body>
                 <Divider />
@@ -271,11 +200,86 @@ const Home = () => {
                 </Card.Footer>
               </Card>
             </Grid>
-          <Spacer y={3}></Spacer>
+            <Spacer y={3}></Spacer>
+            </Row>
+            </Grid.Container>
+
+        <Grid.Container gap={4} justify="center">
+          <Grid lg={11} sm={10}>
+            <Card cover>
+              <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
+                <Col>
+                  <Text
+                    size={12}
+                    weight="bold"
+                    transform="uppercase"
+                    color="#primary"
+                  >
+                    Hyttetur?
+                  </Text>
+                </Col>
+              </Card.Header>
+              <Card.Image
+                src="tur.jpg"
+                height={400}
+                width="100%"
+                alt="Card image background"
+              />
+            </Card>
+          </Grid>
+        </Grid.Container>
+
+        <Grid.Container gap={4} justify="center">
+          <Grid lg={11} sm={10}>
+            <Card cover>
+              <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
+                <Col>
+                  <Text
+                    size={12}
+                    weight="bold"
+                    transform="uppercase"
+                    color="#primary"
+                  >
+                    Hyttetur?
+                  </Text>
+                </Col>
+              </Card.Header>
+              <Card.Image
+                src="kajakk.jpg"
+                height={400}
+                width="100%"
+                alt="Card image background"
+              />
+            </Card>
+          </Grid>
+        </Grid.Container>
+
+        <Grid.Container gap={4} justify="center">
+          <Grid lg={11} sm={10}>
+            <Card cover>
+              <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
+                <Col>
+                  <Text
+                    size={12}
+                    weight="bold"
+                    transform="uppercase"
+                    color="#primary"
+                  >
+                    Hyttetur?
+                  </Text>
+                </Col>
+              </Card.Header>
+              <Card.Image
+                src="hyttetur.jpg"
+                height={400}
+                width="100%"
+                alt="Card image background"
+              />
+            </Card>
+          </Grid>
+        </Grid.Container>
           </Grid.Container>
-          </Row>
-        
-      </Col>
+    </div>
     </div>
   );
 };

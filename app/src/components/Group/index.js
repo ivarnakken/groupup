@@ -10,23 +10,10 @@ import {
   Grid,
   Avatar,
 } from '@nextui-org/react';
-import { useEffect, useState } from 'react';
 import './style.css';
-import axios from 'axios';
 
 const Group = (props) => {
   const { setVisible, bindings } = useModal();
-  const [allMembers, setAllMembers] = useState([]);
-
-  useEffect(() => {
-    getAllMembers();
-  }, []);
-
-  const getAllMembers = async () => {
-    await axios.get('http://localhost:8000/group/members/').then((response) => {
-      setAllMembers(response.data);
-    });
-  };
 
   return (
     <>
@@ -49,11 +36,12 @@ const Group = (props) => {
             </Grid>
 
             <div className="list">
-              {allMembers.map((members) => {
+              {props.members.map((member) => {
                 return (
                   <Avatar
+                    key={member.id}
                     size="lg"
-                    src={members.image}
+                    src={member.image}
                     zoomed
                     color="primary"
                     bordered

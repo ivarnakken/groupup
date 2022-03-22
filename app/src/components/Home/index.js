@@ -19,7 +19,9 @@ const Home = () => {
   return (
     <div className="home">
       <div className="text">
+        <Grid.Container>
         <Col className="info">
+          <Grid>
           <Text h1 size={60} weight="bold" with="100">
             Velkommen til
           </Text>
@@ -28,8 +30,7 @@ const Home = () => {
           <Text h4 color="#00000088" weight="medium" className="comment">
             Stedet der grupper blir kjent.
           </Text>
-          <Spacer></Spacer>
-        </Col>
+
         {isLoggedIn ? (
           <Link to="events/create">
             <Button rounded color="primary" auto className="homeBtn">
@@ -47,10 +48,8 @@ const Home = () => {
             Registrer deg
           </Button>
         )}
-        
-        <Spacer y={2}>
-        </Spacer>
-        <Grid.Container gap={1}>
+        <Spacer></Spacer>
+                <Grid.Container gap={1}>
           <Grid>
             <Avatar text="JR" size="xs" />
           </Grid>
@@ -70,13 +69,11 @@ const Home = () => {
             <Avatar src="galla.jpg" css={{ size: '$20' }} />
           </Grid>
 
-          <Spacer y={10}></Spacer>
-        </Grid.Container>
-        <Col className="groouppiture">
-        <Spacer y={7}></Spacer>
 
-        <Grid.Container gap={4} justify="center">
-          <Grid lg={11} sm={6}>
+        </Grid.Container>
+
+          </Grid>
+          <Col lg={5} sm={6} justify='right'>
             <Card cover>
               <Card.Header css={{ position: 'absolute', zIndex: 1, top: 5 }}>
                 <Col>
@@ -98,21 +95,14 @@ const Home = () => {
                 alt="Card image background"
               />
             </Card>
-          </Grid>
-        </Grid.Container>
+          </Col>
         </Col>
-
-
-
-        <Spacer y={10}></Spacer>
+        </Grid.Container>
+        
+        <Spacer y={2}>
+        </Spacer>
 
       <Grid.Container>
-
-
-        <Spacer y={10}></Spacer>
-
-
-
 
           <Grid.Container gap={4} justify="center">
             <Row>
@@ -215,7 +205,7 @@ const Home = () => {
                     transform="uppercase"
                     color="#primary"
                   >
-                    Hyttetur?
+                    Tur?
                   </Text>
                 </Col>
               </Card.Header>
@@ -240,7 +230,7 @@ const Home = () => {
                     transform="uppercase"
                     color="#primary"
                   >
-                    Hyttetur?
+                    Kajakk?
                   </Text>
                 </Col>
               </Card.Header>

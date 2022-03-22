@@ -40,3 +40,14 @@
   width: fit-content;
   font-size: 1em;
 }
+
+.top-content {
+  display: block;
+  margin-bottom: 50px;
+}
+
+.content {
+  display: block;
+  position: relative;
+  margin-top: 50px;
+}

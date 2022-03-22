@@ -5,6 +5,8 @@ import {
   Spacer,
   Checkbox,
   Textarea,
+  Card,
+  Text as CardText,
 } from '@nextui-org/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -21,6 +23,8 @@ const GroupForm = () => {
     image: '',
     gold: false,
   });
+
+  const [message, setMessage] = useState({ text: '', color: '' });
 
   const handleChange = (event) => {
     setFormValue({
@@ -43,19 +47,31 @@ const GroupForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append('name', formValue.name);
-      formData.append('description', formValue.description);
-      formData.append('gold', formValue.gold);
-      formData.append('leader', currentUser.id);
-      formData.append('members', JSON.stringify(members));
-      formData.append('image', formValue.image);
 
-      await axios.post('http://localhost:8000/group/', formData);
-    } catch (err) {
-      console.error(err);
-    }
+    const formData = new FormData();
+    formData.append('name', formValue.name);
+    formData.append('description', formValue.description);
+    formData.append('gold', formValue.gold);
+    formData.append('leader', currentUser.id);
+    formData.append('members', JSON.stringify(members));
+    formData.append('image', formValue.image);
+
+    await axios
+      .post('http://localhost:8000/group/', formData)
+      .then((response) => {
+        setMessage({
+          text: `Suksess, "${response.data.name}" har blitt laget.`,
+          color: 'success',
+        });
+        setFormValue({
+          name: '',
+          image: '',
+        });
+        setMembers([]);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const [users, setUsers] = useState([]);
@@ -121,6 +137,11 @@ const GroupForm = () => {
           <Button type="submit" shadow color="primary">
             Opprett
           </Button>
+          {message.text && (
+            <Card color={message.color} width={100}>
+              <CardText color="white">{message.text}</CardText>
+            </Card>
+          )}
         </div>
 
         <Spacer y={3} />

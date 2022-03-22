@@ -35,12 +35,10 @@ const GroupForm = () => {
     });
   };
   const handleCheckbox = (event) => {
-    console.log(event);
     setFormValue({
       ...formValue,
       gold: event.target.checked,
     });
-    console.log(formValue);
   };
 
   const handleSubmit = async (event) => {
@@ -125,9 +123,7 @@ const GroupForm = () => {
           </Button>
         </div>
 
-        <Spacer />
-        <Spacer />
-        <Spacer />
+        <Spacer y={3} />
 
         <div>
           <Checkbox
@@ -146,9 +142,7 @@ const GroupForm = () => {
             vanlig gruppe vil forespørselen være anonym. Du vil fortsatt kunne
             være en vanlig gruppe ved å være en gullgruppe!
           </Text>
-          <Spacer />
-
-          <Spacer />
+          <Spacer y={2} />
           <Textarea
             name="description"
             value={formValue.description}

@@ -188,7 +188,12 @@ const Profile = () => {
           {incomingRequests.map((request) => {
             return (
               <>
-                <Request key={request._id} request={request} incoming={true} />
+                <Request
+                  key={request._id}
+                  request={request}
+                  incoming={true}
+                  onAnswered={getRequests}
+                />
                 <Spacer x={1} />
               </>
             );

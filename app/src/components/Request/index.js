@@ -2,24 +2,24 @@ import { Text, Card, Button, Row } from '@nextui-org/react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const handleAccept = (request) => async () => {
-  try {
-    await axios.put('http://localhost:8000/request/' + request._id, {
+const handleAccept = async (request) => {
+  await axios
+    .put('http://localhost:8000/request/' + request._id, {
       status: 'accepted',
+    })
+    .catch((err) => {
+      console.error(err);
     });
-  } catch (err) {
-    console.error(err);
-  }
 };
 
-const handleDecline = (request) => async () => {
-  try {
-    await axios.put('http://localhost:8000/request/' + request._id, {
+const handleDecline = async (request) => {
+  await axios
+    .put('http://localhost:8000/request/' + request._id, {
       status: 'declined',
+    })
+    .catch((err) => {
+      console.error(err);
     });
-  } catch (err) {
-    console.error(err);
-  }
 };
 
 const Request = (props) => {
@@ -41,7 +41,10 @@ const Request = (props) => {
                 auto
                 rounded
                 color="success"
-                onClick={handleAccept(props.request)}
+                onClick={async () => {
+                  await handleAccept(props.request);
+                  props.onAnswered();
+                }}
               >
                 Godkjenn
               </Button>
@@ -50,7 +53,10 @@ const Request = (props) => {
                 auto
                 rounded
                 color="error"
-                onClick={handleDecline(props.request)}
+                onClick={async () => {
+                  await handleDecline(props.request);
+                  props.onAnswered();
+                }}
               >
                 Avslå
               </Button>
@@ -84,6 +90,7 @@ const Request = (props) => {
 Request.propTypes = {
   request: PropTypes.object.isRequired,
   incoming: PropTypes.bool,
+  onAnswered: PropTypes.func,
 };
 
 export default Request;

@@ -4,6 +4,7 @@ import App from './App';
 import EventForm from './components/EventForm';
 import EventList from './components/EventList';
 import GroupForm from './components/GroupForm';
+import GroupList from './components/GroupList';
 import Profile from './components/Profile';
 import Home from './components/Home';
 
@@ -15,8 +16,9 @@ render(
         <Route path="/" element={<Home />} />
         <Route path="events" element={<EventList />} />
         <Route path="events/create" element={<EventForm />} />
-        <Route path="group" element={<GroupForm />} />
+        <Route path="groups/create" element={<GroupForm />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="groups" element={<GroupList />} />
         <Route
           path="*"
           element={

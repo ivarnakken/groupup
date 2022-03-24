@@ -37,6 +37,7 @@ const GroupList = () => {
               leader={group.leader}
               members={group.members}
               image={group.image}
+              description={group.description}
               className="groups"
             />
           );

@@ -1,28 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
 .home {
-  position: relative;
   max-width: 1200px;
 
   display: flex;
+  flex-direction: column;
   margin: 0 auto;
   padding-bottom: 300px; /* The height of the footer + spacing */
+
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 0;
 }
 
-.info {
-  margin-top: 80px;
-  display: flex;
-  flex-direction: column;
+.headerInfo {
+  position: relative;
+  width: 50%;
+  margin-top: 200px;
 }
 
-.info p {
-  margin: 0;
-}
-
-.title {
-  margin-top: -30px;
-}
-
-.comment {
-  margin-top: 20px;
+.styledTitle {
+  display: inline;
+  font-weight: bold;
+  line-height: 1.2;
+  font-size: 3.5rem;
 }
 
 .groupImg {
@@ -30,7 +32,7 @@
   top: 0;
   right: 0;
   margin-top: 100px;
-  margin-right: 150px;
+  margin-right: -150px;
   width: 700px;
   height: auto;
 }
@@ -39,15 +41,19 @@
   margin-top: 50px;
   width: fit-content;
   font-size: 1em;
+  font-family: Inter, sans-serif;
 }
 
-.top-content {
-  display: block;
-  margin-bottom: 50px;
+.comment {
+  font-family: Inter, sans-serif;
 }
 
-.content {
-  display: block;
-  position: relative;
-  margin-top: 50px;
+.manual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoCard {
+  backdrop-filter: blur(1.4rem);
 }

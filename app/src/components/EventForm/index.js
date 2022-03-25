@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Card, Text as CardText } from '@nextui-org/react';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
 import ImageUploadButton from '../ImageUploadButton';
@@ -18,6 +19,7 @@ const EventForm = () => {
   });
 
   const [tagOptions, setTagOptions] = useState([]);
+  const [message, setMessage] = useState({ text: '', color: '' });
 
   useEffect(() => {
     getTags();
@@ -39,15 +41,16 @@ const EventForm = () => {
   const handleTagSelectChange = (selectedOptions) => {
     setFormValue({
       ...formValue,
-      tags: selectedOptions.map((option) => option.value),
+      tags: selectedOptions,
     });
   };
+  //tags: selectedOptions.map((option) => option.value),
 
   const handleInviteSelectChange = (selectedOptions) => {
     console.log(selectedOptions);
     setFormValue({
       ...formValue,
-      invitedGroups: selectedOptions.map((option) => option._id),
+      invitedGroups: selectedOptions,
     });
   };
 
@@ -60,23 +63,46 @@ const EventForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // The default is GET, and must be prevented
-    try {
-      // Images can't be sent via JSON (not without encoding), but they can be sent as form data
-      const formData = new FormData();
-      formData.append('title', formValue.title);
-      formData.append('location', formValue.location);
-      formData.append('date', formValue.date);
-      formData.append('description', formValue.description);
-      formData.append('tags', JSON.stringify(formValue.tags));
-      formData.append('image', formValue.image);
-      formData.append('group', group._id);
-      console.log(formValue.invitedGroups);
-      formData.append('invitedGroups', JSON.stringify(formValue.invitedGroups));
 
-      await axios.post('http://localhost:8000/event/', formData);
-    } catch (err) {
-      console.error(err);
-    }
+    // Images can't be sent via JSON (not without encoding), but they can be sent as form data
+    const formData = new FormData();
+    formData.append('title', formValue.title);
+    formData.append('location', formValue.location);
+    formData.append('date', formValue.date);
+    formData.append('description', formValue.description);
+    formData.append(
+      'tags',
+      JSON.stringify(formValue.tags.map((option) => option.value))
+    );
+    formData.append('image', formValue.image);
+    formData.append('group', group._id);
+    formData.append(
+      'invitedGroups',
+      JSON.stringify(formValue.invitedGroups.map((option) => option._id))
+    );
+
+    await axios
+      .post('http://localhost:8000/event/', formData)
+      .then((response) => {
+        setMessage({
+          text: `Suksess, "${response.data.title}" har blitt laget.`,
+          color: 'success',
+        });
+        setFormValue({
+          title: '',
+          location: '',
+          date: new Date(),
+          description: '',
+          tags: [],
+          image: '',
+          invitedGroups: [],
+        });
+        setGroup({});
+        setInputValue('');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const [groups, setGroups] = useState([]);
@@ -147,12 +173,14 @@ const EventForm = () => {
           <Select
             placeholder="Emneknagger"
             options={tagOptions}
+            value={formValue.tags}
             isMulti
             onChange={handleTagSelectChange}
           />
           <Select
             placeholder="Inviterbare"
             options={groups}
+            value={formValue.invitedGroups}
             getOptionLabel={(group) => group.name}
             getOptionValue={(group) => group._id}
             isMulti
@@ -174,6 +202,11 @@ const EventForm = () => {
           <Button type="submit" shadow color="primary">
             Opprett
           </Button>
+          {message.text && (
+            <Card color={message.color} width={100}>
+              <CardText color="white">{message.text}</CardText>
+            </Card>
+          )}
         </div>
         <Textarea
           name="description"

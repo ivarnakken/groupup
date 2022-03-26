@@ -47,7 +47,6 @@ const EventForm = () => {
   //tags: selectedOptions.map((option) => option.value),
 
   const handleInviteSelectChange = (selectedOptions) => {
-    console.log(selectedOptions);
     setFormValue({
       ...formValue,
       invitedGroups: selectedOptions,

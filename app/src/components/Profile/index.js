@@ -184,32 +184,32 @@ const Profile = () => {
       <Row>
         <Container>
           <Text h3>Ubesvarte forespørsler</Text>
-          <Spacer x={1} />
-          {incomingRequests.map((request) => {
-            return (
-              <>
+          <Spacer />
+          {incomingRequests.length > 0 ? (
+            incomingRequests.map((request) => {
+              return (
                 <Request
                   key={request._id}
                   request={request}
                   incoming={true}
                   onAnswered={getRequests}
                 />
-                <Spacer x={1} />
-              </>
-            );
-          })}
+              );
+            })
+          ) : (
+            <span> Du har ingen forespørsler :(</span>
+          )}
         </Container>
         <Container>
           <Text h3>Status på utgående forespørsler</Text>
-          <Spacer x={1} />
-          {outgoingRequests.map((request) => {
-            return (
-              <>
-                <Request key={request._id} request={request} />
-                <Spacer x={1} />
-              </>
-            );
-          })}
+          <Spacer />
+          {outgoingRequests.length > 0 ? (
+            outgoingRequests.map((request) => {
+              return <Request key={request._id} request={request} />;
+            })
+          ) : (
+            <span>Du har ingen utgående forspørsler :(</span>
+          )}
         </Container>
       </Row>
 

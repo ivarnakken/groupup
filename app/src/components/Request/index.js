@@ -1,6 +1,8 @@
-import { Text, Card, Button, Row } from '@nextui-org/react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
+import './style.css';
+import { Text, Card, Button, Row, Spacer } from '@nextui-org/react';
 
 const handleAccept = async (request) => {
   await axios
@@ -24,16 +26,26 @@ const handleDecline = async (request) => {
 
 const Request = (props) => {
   return (
-    <Card>
+    <Card
+      className={cx('request', {
+        accepted: props.request.status === 'accepted',
+        pending: props.request.status === 'pending',
+        declined: props.request.status === 'declined',
+      })}
+    >
       <Card.Header>
         <Row justify="space-between">
           <Text h2>{props.request.event.title}</Text>
-          <Text>Arrangert av {props.request.event.group.name}</Text>
+          <Text>
+            Arrangert av <b>{props.request.event.group.name}</b>
+          </Text>
         </Row>
       </Card.Header>
       <Card.Footer>
         <Row justify="space-between">
-          <Text>Forespørsel fra {props.request.group.name}</Text>
+          <Text>
+            Forespørsel fra <b>{props.request.group.name}</b>
+          </Text>
           {props.incoming ? (
             <Row justify="flex-end">
               <Button
@@ -48,6 +60,7 @@ const Request = (props) => {
               >
                 Godkjenn
               </Button>
+              <Spacer x={0.5} />
               <Button
                 flat
                 auto

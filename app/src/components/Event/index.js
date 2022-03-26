@@ -3,8 +3,17 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AsyncSelect from 'react-select/async';
-import { useModal } from '@nextui-org/react';
-import { Card, Text, Col, Row, Button, Modal, Spacer } from '@nextui-org/react';
+import {
+  useModal,
+  Card,
+  Col,
+  Text,
+  Loading,
+  Row,
+  Button,
+  Modal,
+  Spacer,
+} from '@nextui-org/react';
 import './style.css';
 
 const Event = (props) => {
@@ -18,12 +27,26 @@ const Event = (props) => {
     return Intl.DateTimeFormat(locale, options).format(new Date(dateString));
   };
 
+  const [isLoading, setLoading] = useState(false); // Boolean indicating whether a loading indicator should be present
+  const [requestSent, setRequestSent] = useState(false); // Boolean indicating whether a request has been sent or not
+
   const sendRequest = async (event, eventId) => {
     event.preventDefault();
-    await axios.post('http://localhost:8000/request/', {
-      group: group._id,
-      event: eventId,
-    });
+    setLoading(true);
+    await axios
+      .post('http://localhost:8000/request/', {
+        group: group._id,
+        event: eventId,
+      })
+      .then(() => {
+        setRequestSent(true);
+      })
+      .catch((err) => {
+        console.err(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const { setVisible, bindings } = useModal();
@@ -88,21 +111,43 @@ const Event = (props) => {
                 defaultOptions
                 value={group}
                 loadOptions={promiseOptions}
-                onChange={(selectedOption) => setGroup(selectedOption)}
+                onChange={(selectedOption) => {
+                  setRequestSent(false), setGroup(selectedOption);
+                }}
                 onInputChange={setInputValue}
                 getOptionLabel={(group) => group.name}
                 getOptionValue={(group) => group._id}
               />
-              <Button auto rounded color="primary" type="submit">
+              {requestSent ? (
                 <Text
-                  css={{ color: 'inherit' }}
-                  size={12}
+                  color="success"
+                  size={15}
                   weight="bold"
                   transform="uppercase"
                 >
-                  Send forespørsel
+                  Forespørsel sendt
                 </Text>
-              </Button>
+              ) : (
+                <Button
+                  auto
+                  rounded
+                  color="primary"
+                  type="submit"
+                  className="requestBtn"
+                  disabled={Object.keys(group).length === 0}
+                >
+                  {isLoading && <Loading size="sm" color="white" />}
+                  <Spacer x={0.3} />
+                  <Text
+                    css={{ color: 'inherit' }}
+                    size={12}
+                    weight="bold"
+                    transform="uppercase"
+                  >
+                    Send forespørsler
+                  </Text>
+                </Button>
+              )}
             </form>
           )}
         </Modal.Body>

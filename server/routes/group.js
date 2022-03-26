@@ -35,7 +35,7 @@ router.post('/', parser.single('image'), async (req, res) => {
 
   group.save(function (err, group) {
     if (err) {
-      console.log(err);
+      console.error(err);
       res.send(400, 'Bad Request');
     } else res.send(group);
   });

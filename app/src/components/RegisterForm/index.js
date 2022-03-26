@@ -30,12 +30,7 @@ const RegisterForm = () => {
 
   return (
     <form id="login" onSubmit={handleRegister}>
-      <Modal
-        closeButton
-        aria-labelledby="modal-title"
-        open={visible}
-        onClose={closeHandler}
-      >
+      <Modal closeButton open={visible} onClose={closeHandler}>
         <Modal.Header className="header">
           <Text id="modal-title" size={18}>
             Velkommen til

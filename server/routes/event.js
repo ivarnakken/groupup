@@ -26,7 +26,7 @@ router.post('/', parser.single('image'), async (req, res) => {
 
   event.save(function (err, event) {
     if (err) {
-      console.log(err);
+      console.error(err);
       res.send(400, 'Bad Request');
     } else res.send(event);
   });

@@ -20,8 +20,7 @@ const editUser = async (data) => {
     await axios
       .put('http://localhost:8000/user/', formData)
       .then((response) => {
-        console.log(response);
-        //Oppdater user
+        // Oppdater user
         localStorage.setItem(
           'user',
           JSON.stringify({

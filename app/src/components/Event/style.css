@@ -16,3 +16,8 @@
 .groupLeaderSelect {
   width: 150px;
 }
+
+.requestBtn {
+  transition: all 300ms ease-in-out;
+  width: auto;
+}

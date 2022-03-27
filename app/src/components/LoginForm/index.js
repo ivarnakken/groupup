@@ -1,7 +1,7 @@
 import { Modal, Input, Button, Text, Row, Loading } from '@nextui-org/react';
 import { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { login } from '../../actions/auth';
 import './style.css';
 
@@ -11,7 +11,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const history = useNavigate();
@@ -32,10 +31,6 @@ const LoginForm = () => {
         setLoading(false);
       });
   };
-
-  if (isLoggedIn) {
-    return <Navigate to="/profile" />;
-  }
 
   return (
     <form id="login" onSubmit={handleLogin}>

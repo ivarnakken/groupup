@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
 
   user.save(function (err, user) {
     if (err) {
-      console.log(err);
+      console.error(err);
       res.send(400, 'Ugyldig brukernavn');
     } else res.send(user);
   });

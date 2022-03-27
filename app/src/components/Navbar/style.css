@@ -9,6 +9,10 @@
   border-bottom: 1px solid #f2f2f2;
 }
 
+.navbar * {
+  z-index: 2;
+}
+
 .links {
   display: flex;
   flex-direction: row;

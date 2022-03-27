@@ -64,7 +64,11 @@ const Home = () => {
 
         <img
           src="gradient1.svg"
-          style={{ position: 'absolute', marginLeft: '200px' }}
+          style={{
+            position: 'absolute',
+            zIndex: '0',
+            marginLeft: '200px',
+          }}
         />
 
         <div className="groupImg">
@@ -84,6 +88,7 @@ const Home = () => {
           src="gradient2.svg"
           style={{
             position: 'absolute',
+            zIndex: '0',
             width: '1100px',
             marginBottom: '1000px',
           }}
@@ -149,6 +154,7 @@ const Home = () => {
             src="gradient3.svg"
             style={{
               position: 'absolute',
+              zIndex: '0',
               width: '900px',
               marginTop: '-400px',
               marginLeft: '400px',

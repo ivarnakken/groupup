@@ -20,6 +20,7 @@
 
 .headerInfo {
   position: relative;
+  z-index: 2;
   margin-top: -30px;
   width: 50%;
 }
@@ -62,6 +63,10 @@
   flex-direction: row;
   justify-content: space-evenly;
   gap: 6.5em;
+}
+
+.section * {
+  z-index: 2;
 }
 
 .textSection {

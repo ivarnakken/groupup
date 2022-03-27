@@ -1,10 +1,17 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Card, Text as CardText } from '@nextui-org/react';
 import Select from 'react-select';
 import AsyncSelect from 'react-select/async';
 import ImageUploadButton from '../ImageUploadButton';
-import { Button, Input, Text, Textarea } from '@nextui-org/react';
+import {
+  Button,
+  Card,
+  Input,
+  Loading,
+  Text,
+  Textarea,
+  Spacer,
+} from '@nextui-org/react';
 import './style.css';
 
 const EventForm = () => {
@@ -18,18 +25,8 @@ const EventForm = () => {
     invitedGroups: [],
   });
 
-  const [tagOptions, setTagOptions] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: '', color: '' });
-
-  useEffect(() => {
-    getTags();
-  }, []);
-
-  const getTags = () => {
-    axios.get('http://localhost:8000/tag').then((response) => {
-      setTagOptions(response.data);
-    });
-  };
 
   const handleChange = (event) => {
     setFormValue({
@@ -80,6 +77,7 @@ const EventForm = () => {
       JSON.stringify(formValue.invitedGroups.map((option) => option._id))
     );
 
+    setLoading(true);
     await axios
       .post('http://localhost:8000/event/', formData)
       .then((response) => {
@@ -105,21 +103,24 @@ const EventForm = () => {
           text: err.message,
           color: 'error',
         });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
+  const [tagOptions, setTagOptions] = useState([]);
   const [groups, setGroups] = useState([]);
   const [group, setGroup] = useState({});
   const [inputValue, setInputValue] = useState('');
 
-  const getGroups = async () => {
+  useEffect(async () => {
     await axios.get('http://localhost:8000/group/').then((response) => {
       setGroups(response.data);
     });
-  };
-
-  useEffect(() => {
-    getGroups();
+    await axios.get('http://localhost:8000/tag').then((response) => {
+      setTagOptions(response.data);
+    });
   }, []);
 
   const filterUsers = (inputValue) => {
@@ -132,7 +133,7 @@ const EventForm = () => {
     new Promise((resolve) =>
       setTimeout(() => {
         resolve(filterUsers(inputValue));
-      }, 500)
+      }, 700)
     );
 
   return (
@@ -155,6 +156,7 @@ const EventForm = () => {
             underlined
             required
           />
+
           <Input
             type="text"
             name="location"
@@ -165,6 +167,7 @@ const EventForm = () => {
             underlined
             required
           />
+
           <Input
             type="date"
             name="date"
@@ -173,22 +176,25 @@ const EventForm = () => {
             underlined
             required
           />
+
           <Select
+            isMulti
             placeholder="Emneknagger"
             options={tagOptions}
             value={formValue.tags}
-            isMulti
             onChange={handleTagSelectChange}
           />
+
           <Select
+            isMulti
             placeholder="Inviterbare"
             options={groups}
             value={formValue.invitedGroups}
             getOptionLabel={(group) => group.name}
             getOptionValue={(group) => group._id}
-            isMulti
             onChange={handleInviteSelectChange}
           />
+
           <AsyncSelect
             placeholder="Gruppe"
             cacheOptions
@@ -200,14 +206,29 @@ const EventForm = () => {
             getOptionLabel={(group) => group.name}
             getOptionValue={(group) => group._id}
           />
+
           <ImageUploadButton name="image" onChange={handleImage} />
 
-          <Button type="submit" shadow color="primary">
-            Opprett
+          <Button auto type="submit" color="primary" className="createEventBtn">
+            {isLoading && (
+              <>
+                <Loading size="sm" color="white" />
+                <Spacer />
+              </>
+            )}
+            <Text
+              css={{ color: 'inherit' }}
+              size={12}
+              weight="bold"
+              transform="uppercase"
+            >
+              Opprett
+            </Text>
           </Button>
+
           {message.text && (
             <Card color={message.color} width={100}>
-              <CardText color="white">{message.text}</CardText>
+              <Text color="white">{message.text}</Text>
             </Card>
           )}
         </div>

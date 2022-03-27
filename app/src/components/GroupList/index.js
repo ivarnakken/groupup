@@ -1,24 +1,20 @@
-import { useEffect, useState } from 'react';
-import Group from '../Group';
 import axios from 'axios';
-import './style.css';
-import { Text } from '@nextui-org/react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Group from '../Group';
+import { Text } from '@nextui-org/react';
+import './style.css';
 
 const GroupList = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [allGroups, setAllGroups] = useState([]);
 
-  useEffect(() => {
-    getAllGroups();
-  }, []);
-
-  const getAllGroups = async () => {
+  useEffect(async () => {
     await axios.get('http://localhost:8000/group/').then((response) => {
       setAllGroups(response.data);
     });
-  };
+  }, []);
 
   return (
     <div className="groupList">

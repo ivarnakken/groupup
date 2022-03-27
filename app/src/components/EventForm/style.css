@@ -28,3 +28,12 @@ form {
 .textarea {
   width: 400px;
 }
+
+.eventForm button {
+  z-index: 0;
+}
+
+.createEventBtn {
+  transition: all 300ms ease-in-out;
+  width: auto;
+}

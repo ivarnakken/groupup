@@ -62,7 +62,7 @@ const Profile = () => {
         <Spacer x={1} />
         <Card cover css={{ w: '100%' }}>
           <Card.Header
-            blur
+            blur="true"
             css={{
               position: 'absolute',
               bgBlur: '#FFFFFF',
@@ -123,7 +123,7 @@ const Profile = () => {
 
         <Card cover css={{ w: '100%' }}>
           <Card.Header
-            blur
+            blur="true"
             css={{
               position: 'absolute',
               bgBlur: '#FFFFFF',

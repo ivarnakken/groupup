@@ -102,7 +102,7 @@ const GroupForm = () => {
     new Promise((resolve) =>
       setTimeout(() => {
         resolve(filterUsers(inputValue));
-      }, 500)
+      }, 700)
     );
 
   return (

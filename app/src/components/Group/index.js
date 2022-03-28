@@ -9,6 +9,7 @@ import {
   Modal,
   Grid,
   Avatar,
+  Spacer,
 } from '@nextui-org/react';
 import './style.css';
 
@@ -19,13 +20,18 @@ const Group = (props) => {
     <>
       <Modal {...bindings}>
         <Modal.Header>
-          <Text h3 color="primary">
-            {props.name}
-          </Text>
+          <Col>
+            <Text h3 color="primary">
+              {props.name}
+            </Text>
+            <Text color="primary">{props.description}</Text>
+          </Col>
         </Modal.Header>
         <Modal.Body>
-          <Grid.Container gap={2}>
+          <Grid.Container gap={1}>
             <Grid>
+              <Text color="primary">Gruppeleder</Text>
+              <Spacer y={0.7} />
               <Avatar
                 size="lg"
                 src={props.leader.image}
@@ -33,22 +39,24 @@ const Group = (props) => {
                 color="primary"
                 bordered
               />
-            </Grid>
 
-            <div className="list">
-              {props.members.map((member) => {
-                return (
-                  <Avatar
-                    key={member.id}
-                    size="lg"
-                    src={member.image}
-                    zoomed
-                    color="primary"
-                    bordered
-                  />
-                );
-              })}
-            </div>
+              <Spacer y={1} />
+              <Text color="primary">Gruppemedlemmer</Text>
+              <div className="list">
+                {props.members.map((member) => {
+                  return (
+                    <Avatar
+                      key={member.id}
+                      size="lg"
+                      src={member.image}
+                      zoomed
+                      color="primary"
+                      bordered
+                    />
+                  );
+                })}
+              </div>
+            </Grid>
           </Grid.Container>
         </Modal.Body>
       </Modal>
@@ -79,6 +87,7 @@ const Group = (props) => {
         <Card.Body>
           <Card.Image src={props.image} width="100%" height={400} />
         </Card.Body>
+
         <Card.Footer
           blur
           css={{
@@ -90,6 +99,15 @@ const Group = (props) => {
           }}
         >
           <Row>
+            <Col>
+              <Row>
+                <Col>
+                  <Text color="#d1d1d1" size={12} className="description">
+                    {props.description}
+                  </Text>
+                </Col>
+              </Row>
+            </Col>
             <Col>
               <Row justify="flex-end">
                 <Button
@@ -123,6 +141,7 @@ Group.propTypes = {
   leader: PropTypes.string.isRequired,
   members: PropTypes.arrayOf(PropTypes.string),
   image: PropTypes.string,
+  description: PropTypes.string,
 };
 
 export default Group;

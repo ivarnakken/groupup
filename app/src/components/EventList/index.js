@@ -13,16 +13,12 @@ const EventList = () => {
   const [allEvents, setAllEvents] = useState([]);
   const [outEvents, setOutEvents] = useState([]);
 
-  useEffect(() => {
-    getAllEvents();
-  }, []);
-
-  const getAllEvents = async () => {
+  useEffect(async () => {
     await axios.get('http://localhost:8000/event/').then((response) => {
       setAllEvents(response.data);
       setOutEvents(response.data);
     });
-  };
+  }, []);
 
   return (
     <div className="eventList">
@@ -50,6 +46,7 @@ const EventList = () => {
           );
         })}
       </div>
+
       {isLoggedIn && (
         <Link to="create" className="createBtn">
           <div className="plusIcon">

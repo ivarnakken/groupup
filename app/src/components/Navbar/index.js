@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import LoginForm from '../LoginForm';
 import RegisterForm from '../RegisterForm';
-import { Button, Spacer } from '@nextui-org/react';
-import './style.css';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
+import { Avatar, Button, Spacer } from '@nextui-org/react';
+import './style.css';
 
 const Navbar = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -29,16 +29,20 @@ const Navbar = () => {
           <NavLink to="/groups">Grupper</NavLink>
           {currentUser ? (
             <>
-              <NavLink to="/profile">{currentUser.username}</NavLink>
-              <Button
-                auto
-                flat
-                rounded
-                color="error"
-                onClick={_logout}
-                className="logoutBtn"
-              >
-                <box-icon name="log-out" color="#f21361"></box-icon>
+              <NavLink to="/profile">
+                {currentUser.image ? (
+                  <Avatar
+                    src={currentUser.image}
+                    zoomed
+                    size="sm"
+                    style={{ cursor: 'pointer' }}
+                  />
+                ) : (
+                  <span>{currentUser.username}</span>
+                )}
+              </NavLink>
+              <Button auto flat rounded color="error" onClick={_logout}>
+                <box-icon name="log-out" color="#f21361" />
                 <Spacer x={0.5} />
                 <span>Logg ut</span>
               </Button>

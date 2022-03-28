@@ -55,7 +55,7 @@ const Event = (props) => {
   const [group, setGroup] = useState({});
   const [inputValue, setInputValue] = useState('');
 
-  const getGroups = async () => {
+  useEffect(async () => {
     await axios
       .get('http://localhost:8000/group/', {
         params: { user: currentUser?.id },
@@ -63,10 +63,6 @@ const Event = (props) => {
       .then((response) => {
         setGroups(response.data);
       });
-  };
-
-  useEffect(() => {
-    getGroups();
   }, []);
 
   const filterUsers = (inputValue) => {
@@ -79,7 +75,7 @@ const Event = (props) => {
     new Promise((resolve) =>
       setTimeout(() => {
         resolve(filterUsers(inputValue));
-      }, 500)
+      }, 700)
     );
 
   return (
@@ -136,8 +132,12 @@ const Event = (props) => {
                   className="requestBtn"
                   disabled={Object.keys(group).length === 0}
                 >
-                  {isLoading && <Loading size="sm" color="white" />}
-                  <Spacer x={0.3} />
+                  {isLoading && (
+                    <>
+                      <Loading size="sm" color="white" />
+                      <Spacer x={0.3} />
+                    </>
+                  )}
                   <Text
                     css={{ color: 'inherit' }}
                     size={12}

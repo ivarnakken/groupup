@@ -64,7 +64,11 @@ const Home = () => {
 
         <img
           src="gradient1.svg"
-          style={{ position: 'absolute', marginLeft: '200px' }}
+          style={{
+            position: 'absolute',
+            zIndex: '1',
+            marginLeft: '150px',
+          }}
         />
 
         <div className="groupImg">
@@ -79,11 +83,14 @@ const Home = () => {
         </div>
       </Row>
 
+      <img src="nodes.gif" className="nodes1" />
+
       <div className="manual">
         <img
           src="gradient2.svg"
           style={{
             position: 'absolute',
+            zIndex: '1',
             width: '1100px',
             marginBottom: '1000px',
           }}
@@ -123,6 +130,14 @@ const Home = () => {
               Brukere kan opprette grupper med sine nærmeste. Match deretter med
               andre grupper gjennom arrangementer.
             </Text>
+
+            <Spacer y={0.8} />
+
+            <Link to="groups/create">
+              <Button auto flat rounded css={{ color: '#53F76E' }}>
+                Opprett
+              </Button>
+            </Link>
           </div>
 
           <Card cover>
@@ -134,6 +149,8 @@ const Home = () => {
             />
           </Card>
         </div>
+
+        <img src="nodes.gif" className="nodes2" />
 
         <div className="section">
           <Card cover>
@@ -149,6 +166,7 @@ const Home = () => {
             src="gradient3.svg"
             style={{
               position: 'absolute',
+              zIndex: '1',
               width: '900px',
               marginTop: '-400px',
               marginLeft: '400px',
@@ -189,6 +207,14 @@ const Home = () => {
               Spesifiser interessen deres, og finn likesinnede. Bruk også
               filtreringsverktøyene for det de er verdt!
             </Text>
+
+            <Spacer y={0.8} />
+
+            <Link to="events">
+              <Button auto flat rounded css={{ color: '#E4441C' }}>
+                Utforsk
+              </Button>
+            </Link>
           </div>
         </div>
 

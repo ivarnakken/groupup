@@ -1,24 +1,22 @@
-import { useEffect, useState } from 'react';
-import Group from '../Group';
 import axios from 'axios';
-import './style.css';
-import { Text } from '@nextui-org/react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Group from '../Group';
+import { Text } from '@nextui-org/react';
+import './style.css';
 
 const GroupList = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
+
   const [allGroups, setAllGroups] = useState([]);
+  // const [likedGroups, setLikedGroups] = useState([]);
 
-  useEffect(() => {
-    getAllGroups();
-  }, []);
-
-  const getAllGroups = async () => {
+  useEffect(async () => {
     await axios.get('http://localhost:8000/group/').then((response) => {
       setAllGroups(response.data);
     });
-  };
+  }, []);
 
   return (
     <div className="groupList">
@@ -27,6 +25,7 @@ const GroupList = () => {
           Grupper
         </Text>
       </div>
+
       <div className="list">
         {allGroups.map((group) => {
           return (
@@ -38,10 +37,12 @@ const GroupList = () => {
               members={group.members}
               image={group.image}
               className="groups"
+              onClick={() => console.log(group._id)}
             />
           );
         })}
       </div>
+
       {isLoggedIn && (
         <Link to="create" className="createBtn">
           <div className="plusIcon">

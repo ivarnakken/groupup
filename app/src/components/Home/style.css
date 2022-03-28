@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
-
 .home {
   max-width: 1200px;
 
@@ -18,9 +16,14 @@
   height: 100vh;
 }
 
+.top * {
+  z-index: 3;
+}
+
 .headerInfo {
   position: relative;
-  margin-top: -30px;
+  z-index: 4;
+  margin-top: -60px;
   width: 50%;
 }
 
@@ -33,6 +36,7 @@
 
 .groupImg {
   position: absolute;
+  margin-top: -60px;
   right: -100px;
   width: 700px;
   height: auto;
@@ -43,11 +47,22 @@
   margin-top: 50px;
   width: fit-content;
   font-size: 1em;
-  font-family: Inter, sans-serif;
 }
 
-.comment {
-  font-family: Inter, sans-serif;
+.nodes1 {
+  position: absolute;
+  z-index: 0;
+  filter: grayscale(1) blur(0.1em);
+  width: 800px;
+  right: -300px;
+}
+
+.nodes2 {
+  position: absolute;
+  z-index: 0;
+  filter: grayscale(1) blur(0.1em);
+  width: 1000px;
+  left: -300px;
 }
 
 .manual {
@@ -64,7 +79,24 @@
   gap: 6.5em;
 }
 
+.section * {
+  z-index: 3;
+}
+
 .textSection {
   display: flex;
   flex-direction: column;
+}
+
+.section button {
+  background-color: #eeeeeeff;
+  width: fit-content;
+}
+
+.section1Btn {
+  color: #53f76e;
+}
+
+.section2Btn {
+  color: #e4441c;
 }

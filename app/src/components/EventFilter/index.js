@@ -7,8 +7,15 @@ import './style.css';
 const EventFilter = ({ allEvents, setOutEvents }) => {
   const [tagOptions, setTagOptions] = useState([]);
 
-  useEffect(() => {
-    getTags();
+  useEffect(async () => {
+    await axios
+      .get('http://localhost:8000/tag')
+      .then((response) => {
+        setTagOptions(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   const handleSelectChange = (selectedOptions) => {
@@ -28,21 +35,14 @@ const EventFilter = ({ allEvents, setOutEvents }) => {
     }
   };
 
-  const getTags = () => {
-    axios.get('http://localhost:8000/tag').then((response) => {
-      setTagOptions(response.data);
-    });
-  };
-
   return (
-    <>
-      <Select
-        placeholder="Emneknagger"
-        options={tagOptions}
-        isMulti
-        onChange={handleSelectChange}
-      />
-    </>
+    <Select
+      placeholder="Emneknagger"
+      options={tagOptions}
+      isMulti
+      onChange={handleSelectChange}
+      className="eventFilter"
+    />
   );
 };
 

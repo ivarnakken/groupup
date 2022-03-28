@@ -5,6 +5,7 @@ import {
   Spacer,
   Checkbox,
   Textarea,
+  Loading,
   Card,
   Text as CardText,
 } from '@nextui-org/react';
@@ -24,6 +25,7 @@ const GroupForm = () => {
     gold: false,
   });
 
+  const [isLoading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: '', color: '' });
 
   const handleChange = (event) => {
@@ -56,6 +58,7 @@ const GroupForm = () => {
     formData.append('members', JSON.stringify(members));
     formData.append('image', formValue.image);
 
+    setLoading(true);
     await axios
       .post('http://localhost:8000/group/', formData)
       .then((response) => {
@@ -75,6 +78,9 @@ const GroupForm = () => {
           text: err.message,
           color: 'error',
         });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -82,14 +88,10 @@ const GroupForm = () => {
   const [members, setMembers] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
-  const getUsers = async () => {
+  useEffect(async () => {
     await axios.get('http://localhost:8000/user/').then((response) => {
       setUsers(response.data);
     });
-  };
-
-  useEffect(() => {
-    getUsers();
   }, []);
 
   const filterUsers = (inputValue) => {
@@ -125,6 +127,7 @@ const GroupForm = () => {
             underlined
             required
           />
+
           <AsyncSelect
             placeholder="Medlemmer"
             isMulti
@@ -137,10 +140,26 @@ const GroupForm = () => {
             getOptionLabel={(user) => user.username}
             getOptionValue={(user) => user._id}
           />
+
           <ImageUploadButton name="image" onChange={handleImage} />
+
           <Button type="submit" shadow color="primary">
-            Opprett
+            {isLoading && (
+              <>
+                <Loading size="sm" color="white" />
+                <Spacer x={1.5} />
+              </>
+            )}
+            <Text
+              css={{ color: 'inherit' }}
+              size={12}
+              weight="bold"
+              transform="uppercase"
+            >
+              Opprett
+            </Text>
           </Button>
+
           {message.text && (
             <Card color={message.color} width={100}>
               <CardText color="white">{message.text}</CardText>

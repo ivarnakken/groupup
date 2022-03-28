@@ -3,3 +3,7 @@
   max-width: 1100px;
   height: 94vh;
 }
+
+.groupForm button {
+  z-index: 0;
+}

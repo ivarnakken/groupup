@@ -88,3 +88,16 @@
   display: flex;
   flex-direction: column;
 }
+
+.section button {
+  background-color: #eeeeeeff;
+  width: fit-content;
+}
+
+.section1Btn {
+  color: #53F76E;
+}
+
+.section2Btn {
+  color: #E4441C;
+}

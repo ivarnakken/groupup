@@ -130,6 +130,14 @@ const Home = () => {
               Brukere kan opprette grupper med sine nærmeste. Match deretter med
               andre grupper gjennom arrangementer.
             </Text>
+
+            <Spacer y={0.8} />
+
+            <Link to="groups/create">
+              <Button auto flat rounded css={{ color: '#53F76E' }}>
+                Opprett
+              </Button>
+            </Link>
           </div>
 
           <Card cover>
@@ -200,9 +208,13 @@ const Home = () => {
               filtreringsverktøyene for det de er verdt!
             </Text>
 
-            <Button auto flat rounded color="white">
-              Utforsk
-            </Button>
+            <Spacer y={0.8} />
+
+            <Link to="events">
+              <Button auto flat rounded css={{ color: '#E4441C' }}>
+                Utforsk
+              </Button>
+            </Link>
           </div>
         </div>
 

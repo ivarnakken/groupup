@@ -101,6 +101,10 @@ const EventForm = () => {
       })
       .catch((err) => {
         console.error(err);
+        setMessage({
+          text: err.message,
+          color: 'error',
+        });
       });
   };
 

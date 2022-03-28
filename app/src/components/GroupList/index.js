@@ -8,7 +8,9 @@ import './style.css';
 
 const GroupList = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
+
   const [allGroups, setAllGroups] = useState([]);
+  // const [likedGroups, setLikedGroups] = useState([]);
 
   useEffect(async () => {
     await axios.get('http://localhost:8000/group/').then((response) => {
@@ -23,6 +25,7 @@ const GroupList = () => {
           Grupper
         </Text>
       </div>
+
       <div className="list">
         {allGroups.map((group) => {
           return (
@@ -34,10 +37,12 @@ const GroupList = () => {
               members={group.members}
               image={group.image}
               className="groups"
+              onClick={() => console.log(group._id)}
             />
           );
         })}
       </div>
+
       {isLoggedIn && (
         <Link to="create" className="createBtn">
           <div className="plusIcon">

@@ -66,8 +66,8 @@ const Home = () => {
           src="gradient1.svg"
           style={{
             position: 'absolute',
-            zIndex: '0',
-            marginLeft: '200px',
+            zIndex: '1',
+            marginLeft: '150px',
           }}
         />
 
@@ -83,12 +83,14 @@ const Home = () => {
         </div>
       </Row>
 
+      <img src="nodes.gif" className="nodes1" />
+
       <div className="manual">
         <img
           src="gradient2.svg"
           style={{
             position: 'absolute',
-            zIndex: '0',
+            zIndex: '1',
             width: '1100px',
             marginBottom: '1000px',
           }}
@@ -140,6 +142,8 @@ const Home = () => {
           </Card>
         </div>
 
+        <img src="nodes.gif" className="nodes2" />
+
         <div className="section">
           <Card cover>
             <Card.Image
@@ -154,7 +158,7 @@ const Home = () => {
             src="gradient3.svg"
             style={{
               position: 'absolute',
-              zIndex: '0',
+              zIndex: '1',
               width: '900px',
               marginTop: '-400px',
               marginLeft: '400px',
@@ -195,6 +199,10 @@ const Home = () => {
               Spesifiser interessen deres, og finn likesinnede. Bruk også
               filtreringsverktøyene for det de er verdt!
             </Text>
+
+            <Button auto flat rounded color="white">
+              Utforsk
+            </Button>
           </div>
         </div>
 

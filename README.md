@@ -1,5 +1,9 @@
 # GroupUp
 
+> GroupUp: Project in TDT4140 - Software Engineering
+
+<video src='./app/public/screen-capture.mp4' width=600 />
+
 # Starte applikasjonen
 ### Klient (frontend)
 

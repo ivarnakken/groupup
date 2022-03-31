@@ -2,7 +2,7 @@
 
 > GroupUp: Project in TDT4140 - Software Engineering
 
-<video src='./app/public/screen-capture.mp4' width=600 />
+https://user-images.githubusercontent.com/69514187/161054432-2f1a1d71-2834-4ebf-bf13-3477aa93c4a7.mp4
 
 # Starte applikasjonen
 ### Klient (frontend)
